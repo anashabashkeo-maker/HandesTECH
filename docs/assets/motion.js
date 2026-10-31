@@ -43,3 +43,4 @@
   document.addEventListener('catalog:render', animateCards);
   animateCards();
 })();
+
