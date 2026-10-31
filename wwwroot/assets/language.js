@@ -11,8 +11,8 @@
   switcher.dataset.activeLanguage=language;switcher.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></svg><span class="language-track"><span class="language-thumb"></span><span class="language-option language-en">EN</span><span class="language-option language-ar">عربي</span></span>';switcher.lang=language==='ar'?'en':'ar';switcher.setAttribute('aria-label',language==='ar'?'Switch to English':'التبديل إلى العربية');
   observer.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','alt']});
  }
- window.HandesLanguage={translate};
+ window.HandesLanguage={translate,originalText:el=>[...el.childNodes].map(n=>originals.get(n)?.original||n.textContent).join('')};
  switcher.addEventListener('click',()=>{language=language==='ar'?'en':'ar';try{localStorage.setItem('handestech-language',language);}catch{}apply();});
- fetch('assets/ar.json?v=3').then(r=>{if(!r.ok)throw Error('language data');return r.json();}).then(data=>{dictionary=Object.fromEntries(Object.entries(data).map(([k,v])=>[k.toLowerCase(),v]));const keys=Object.keys(dictionary).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));matcher=new RegExp('(?<![A-Za-z])(?:'+keys.join('|')+')(?![A-Za-z])','gi');apply();}).catch(()=>{switcher.textContent='Language unavailable';switcher.disabled=true;});
+ fetch('assets/ar.json?v=4').then(r=>{if(!r.ok)throw Error('language data');return r.json();}).then(data=>{dictionary=Object.fromEntries(Object.entries(data).map(([k,v])=>[k.toLowerCase(),v]));const keys=Object.keys(dictionary).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));matcher=new RegExp('(?<![A-Za-z])(?:'+keys.join('|')+')(?![A-Za-z])','gi');apply();}).catch(()=>{switcher.textContent='Language unavailable';switcher.disabled=true;});
 })();
 
