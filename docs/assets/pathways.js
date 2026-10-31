@@ -27,7 +27,7 @@
  }
  let opener;
  document.addEventListener('click',e=>{
-  const c=e.target.closest('[data-course]');if(c){opener=c;const r=records.get(c.dataset.course);$('#course-detail').innerHTML=`<div class="brief-body"><p class="eyebrow">${esc(r.level)} / COURSE OUTLINE</p><h2 id="course-title">${esc(r.title)}</h2><p class="outcome">${esc(r.scope)}</p><h3>Inside this course</h3><ol>${r.topics.map(t=>'<li>'+esc(t)+'</li>').join('')}</ol><p>Study format and final project scope are confirmed before enrolment.</p><button class="button" data-enquiry="${esc(r.title)}">Prepare a learning brief ↗</button></div>`;$('#course-info').showModal();}
+  const c=e.target.closest('[data-course]');if(c){opener=c;const r=records.get(c.dataset.course);$('#course-detail').innerHTML=`<div class="brief-body"><p class="eyebrow">${esc(r.level)} / COURSE OUTLINE</p><h2 id="course-title">${esc(r.title)}</h2><p class="outcome">${esc(r.scope)}</p><h3>Inside this course</h3><ol>${r.topics.map(t=>'<li>'+esc(t)+'</li>').join('')}</ol><p>Study format and final project scope are confirmed before enrolment.</p><a class="button" href="course.html?discipline=${encodeURIComponent(document.body.dataset.slug)}&amp;title=${encodeURIComponent(r.title)}">View course <span aria-hidden="true">↗</span></a></div>`;$('#course-info').showModal();}
   const enquiry=e.target.closest('[data-enquiry]');if(enquiry){opener=enquiry;if($('#course-info').open)$('#course-info').close();$('#brief-topic').value=window.HandesLanguage?.translate(enquiry.dataset.enquiry)||enquiry.dataset.enquiry;$('#brief-status').textContent='';$('#brief-dialog').showModal();$('#brief-topic').focus();}
   const close=e.target.closest('[data-close]');if(close)document.getElementById(close.dataset.close).close();
  });
