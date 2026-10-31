@@ -1,0 +1,10 @@
+bin/
+obj/
+.vs/
+Backup/
+UpgradeLog*.htm
+*.user
+*.suo
+.env
+.env.*
+!.env.example
