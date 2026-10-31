@@ -6,7 +6,7 @@ const rows=source.slice(source.indexOf(' function row('),source.indexOf(' if(doc
 const definitions=source.slice(source.indexOf('   function design()'),source.indexOf("   $('#path-content').innerHTML"));
 const models=source.match(/const modelSystems=([\s\S]*?);\s+function design/)[1];
 const output=departments.map(([slug,name,description,img,paths])=>{
- const courses=vm.runInNewContext("const records=new Map();let serial=0;const esc=s=>String(s);const modelSystems="+models+";"+rows+definitions+"design();bim();JSON.stringify([...records.values()]);",{slug,name,description,img,paths});
+ const courses=vm.runInNewContext("const records=new Map();let serial=0;let currentPath='design';const esc=s=>String(s);const modelSystems="+models+";"+rows+definitions+"design();bim();JSON.stringify([...records.values()]);",{slug,name,description,img,paths});
  return {slug,name,image:img,courses:JSON.parse(courses)};
 });
 fs.writeFileSync(path.join(root,'assets/course-data.json'),JSON.stringify(output));
