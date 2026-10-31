@@ -33,6 +33,7 @@
  });
  document.querySelectorAll('dialog').forEach(d=>d.addEventListener('close',()=>{if(opener?.isConnected)opener.focus();}));
  $('#brief-form').addEventListener('submit',e=>{e.preventDefault();const ar=document.documentElement.lang==='ar';const content=(ar?'HandesTECH — طلب مشروع / تدريب\n\nالموضوع: ':'HandesTECH — Project / Learning Brief\n\nTopic: ')+$('#brief-topic').value.trim()+(ar?'\n\nالنطاق:\n':'\n\nScope:\n')+$('#brief-scope').value.trim();const url=URL.createObjectURL(new Blob([content],{type:'text/plain;charset=utf-8'}));const link=document.createElement('a');link.href=url;link.download='HandesTECH-brief.txt';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('#brief-status').textContent='Brief downloaded. No enquiry has been sent.';});
+ document.dispatchEvent(new Event('academy:ready'));
  const video=$('#engineering-video');if(video){const toggle=$('#video-toggle'),reduce=matchMedia('(prefers-reduced-motion: reduce)');function sync(){toggle.textContent=video.paused?'Play motion ▷':'Pause motion Ⅱ';toggle.setAttribute('aria-label',video.paused?'Play background video':'Pause background video');}toggle.addEventListener('click',()=>video.paused?video.play().catch(sync):video.pause());video.addEventListener('play',sync);video.addEventListener('pause',sync);if(!reduce.matches&&!navigator.connection?.saveData)video.play().catch(sync);reduce.addEventListener('change',()=>{if(reduce.matches)video.pause();});}
 })();
 
