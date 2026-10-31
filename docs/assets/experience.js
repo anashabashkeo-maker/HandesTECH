@@ -1,9 +1,8 @@
 (()=>{
- const reduced=matchMedia('(prefers-reduced-motion: reduce)');let paused=reduced.matches;try{paused=paused||localStorage.getItem('handestech-motion')==='off';}catch{}const body=document.body;
- const control=document.createElement('button');control.className='motion-control';control.type='button';document.querySelector('.language-switch')?.after(control);
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');let paused=reduced.matches;const body=document.body;
  const progress=document.createElement('div');progress.className='reading-progress';progress.setAttribute('aria-hidden','true');body.append(progress);
- function syncMotion(){body.classList.toggle('motion-paused',paused);control.textContent=paused?'Motion off':'Motion on';control.setAttribute('aria-label',paused?'Resume site motion':'Pause site motion');control.setAttribute('aria-pressed',!paused);if(paused)document.querySelector('video')?.pause();else if(!reduced.matches&&!document.hidden)document.querySelector('video')?.play().catch(()=>{});}
- control.addEventListener('click',()=>{paused=!paused;try{localStorage.setItem('handestech-motion',paused?'off':'on');}catch{}syncMotion();});reduced.addEventListener('change',()=>{paused=reduced.matches;syncMotion();});syncMotion();
+ function syncMotion(){body.classList.toggle('motion-paused',paused);if(paused)document.querySelector('video')?.pause();else if(!reduced.matches&&!document.hidden)document.querySelector('video')?.play().catch(()=>{});}
+ reduced.addEventListener('change',()=>{paused=reduced.matches;syncMotion();});syncMotion();
  const watched=new WeakSet();const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('has-entered');observer.unobserve(e.target);}});},{threshold:.08}):null;
  function watch(){document.querySelectorAll('.discipline-card,.services-intro,.portfolio-studio>h2,.portfolio-previews>a,.clients-heading,.contact-studio,.stage,.service-feature,.achievements').forEach((el,i)=>{if(watched.has(el))return;watched.add(el);el.style.setProperty('--entrance-delay',(i%3)*65+'ms');if(observer){el.classList.add('motion-reveal');observer.observe(el);}});}
  watch();let pending=false;const updates=new MutationObserver(()=>{if(!pending){pending=true;requestAnimationFrame(()=>{pending=false;watch();setupStages();});}});updates.observe(document.querySelector('main'),{childList:true,subtree:true});
