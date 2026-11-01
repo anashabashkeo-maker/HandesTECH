@@ -15,3 +15,6 @@ Application images use the unchanged vendor product icons and logos listed in ww
 Coordination curriculum reference: https://help.autodesk.com/cloudhelp/2026/ENU/Navisworks-Clash-Detective/files/GUID-36D9904E-12F3-4F82-8DD3-C2103DB0BC29.htm
 
 New BIM workstation and engineering drawing-review photographs are AI-generated illustrative scenes, not client projects or genuine software screenshots. See VISUAL-ASSETS.md for prompts and saved paths.
+
+Added original Autodesk Inventor, Carrier HAP, CYPEHVAC, CYPEPLUMBING, CYPEFIRE, SketchUp and Enscape artwork from the sources in application-sources.json. The original ABB corporate icon identifies ABB Furse / StrikeRisk introductory content.
+Product references: https://www.carrier.com/us/en/commercial/software/hvac-system-design/hourly-analysis-program/ ; https://info.cype.com/en/software/cypehvac/ ; https://info.cype.com/en/software/cypeplumbing/ ; https://info.cype.com/en/software/cypefire-hydraulic-systems/ ; https://www.abb.com/global/en/areas/electrification/brands/furse ; https://www.chaos.com/enscape
