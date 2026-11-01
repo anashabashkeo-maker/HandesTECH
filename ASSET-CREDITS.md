@@ -10,7 +10,8 @@ Photo IDs: construction 159358; substation 36358684 (Phil Evenden); mechanical s
 
 AI curriculum represents proposed learning outlines, not a claim of built-in Revit features. Reference: Autodesk, Introducing Revit Generative Design, https://revit.downloads.autodesk.com/download/2021RVT_RTM/Docs/InProd/RevitGenerativeDesign_overview.pdf
 
-Application image tiles are original labelled illustrations, not official vendor logos. Software names identify proposed course tools. Existing buildings.webp, coordination.webp and automation.webp are conceptual engineering renders from the retained project assets; they illustrate services and are not completed client projects or screenshots of software.
+Application images use the unchanged vendor product icons and logos listed in wwwroot/assets/application-sources.json. Logos identify course tools; no vendor affiliation is claimed. Existing buildings.webp, coordination.webp and automation.webp are conceptual engineering renders from the retained project assets; they illustrate services and are not completed client projects or screenshots of software.
 
 Coordination curriculum reference: https://help.autodesk.com/cloudhelp/2026/ENU/Navisworks-Clash-Detective/files/GUID-36D9904E-12F3-4F82-8DD3-C2103DB0BC29.htm
 
+New BIM workstation and engineering drawing-review photographs are AI-generated illustrative scenes, not client projects or genuine software screenshots. See VISUAL-ASSETS.md for prompts and saved paths.

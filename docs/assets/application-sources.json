@@ -1,0 +1,14 @@
+{
+  "revit": "https://atcgeoportalassets.s3.eu-west-1.amazonaws.com/Autodesk+Product+Icons+2025/revit-product-icons.zip",
+  "autocad": "https://atcgeoportalassets.s3.eu-west-1.amazonaws.com/Autodesk+Product+Icons+2025/autocad-product-icons.zip",
+  "civil3d": "https://atcgeoportalassets.s3.eu-west-1.amazonaws.com/Autodesk+Product+Icons+2025/civil-3d-product-icons.zip",
+  "navisworks": "https://atcgeoportalassets.s3.eu-west-1.amazonaws.com/Autodesk+Product+Icons+2025/navisworks-family-product-icons.zip",
+  "excel": "https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/brand-icons/product/svg/excel_48x1.svg",
+  "dynamo": "https://raw.githubusercontent.com/DynamoDS/Dynamo/master/doc/distrib/Images/dynamo_logo_dark.png",
+  "python": "https://www.python.org/static/community_logos/python-logo-generic.svg",
+  "etap": "https://cdn.etap.com/content-etap-prod/images/default-source/logo-cdn/etap-logos/logo-etap.svg?sfvrsn=587bea7c_3",
+  "dialux": "https://www.dialux.com/_assets/e39ff17b678e04d6f715997d2c4e8eb5/Images/DIALux_Logo.svg",
+  "etabs": "https://www.csiamerica.com/site/branding/ETABS_web_Logo_150pxh_white_210202.png",
+  "safe": "https://www.csiamerica.com/site/branding/SAFE_web_Logo_150pxh_white_210202.png",
+  "acc": "https://a.storyblok.com/f/64835/x/3ad82df92d/acc-single-line-white-2022.svg"
+}
