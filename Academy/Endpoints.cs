@@ -41,20 +41,20 @@ public static class Endpoints
             return d.Disciplines.Select(x => new { slug = x.Id, x.Name, x.Image, courses = PublishedCourses(d).Where(c => c.DisciplineId == x.Id)
                 .Select(c => new { c.Id, c.Title, c.Level, c.Scope, c.Topics, path = d.Paths.Single(p => p.Id == c.PathId).Kind, c.PathId, c.Applications, c.ParentId }) });
         });
-        api.MapPost("/assessment/code", async (CodeRequest input, AssessmentService service, AcademyStore store, HttpContext ctx) =>
+        api.MapPost("/assessment/guest", async (GuestRequest input, AssessmentService service, HttpContext ctx) =>
         {
-            if (!input.Consent) throw new AcademyException("Agree to share your assessment with HandesTECH before requesting a code.");
-            var d = store.Read();
-            if (input.Email == null || input.BotToken == null || input.BotToken.Length > 2048 || !d.AssessmentModes.Any(x => x.Value == "enabled" && AcademyStore.Ready(d, x.Key)))
-                throw new AcademyException("Assessments are coming soon.", 409);
-            return new { challengeId = await service.RequestCode(input.Email, input.BotToken, ctx) };
-        }).RequireRateLimiting("sensitive");
-        api.MapPost("/assessment/verify", (VerifyRequest input, AssessmentService service, HttpContext ctx) =>
-        {
-            if (input.ChallengeId == null || input.ChallengeId.Length != 64 || input.Code == null || input.Code.Length != 6 || !input.Code.All(char.IsAsciiDigit)) throw new AcademyException("Enter the six-digit code.");
-            var id = service.Verify(input.ChallengeId, input.Code);
+            if (!input.Consent) throw new AcademyException("Agree to share your assessment result privately with HandesTECH before starting.");
+            if (string.IsNullOrWhiteSpace(input.DisciplineId)) throw new AcademyException("Choose a discipline.");
+            var existing = ctx.Request.Cookies["HandesTECH.Visitor"];
+            if (existing != null)
+            {
+                try { return Results.Ok(service.Start(existing, input.DisciplineId, ctx)); }
+                catch (AcademyException e) when (e.Status == 401) { }
+            }
+            var id = await service.CreateGuest(ctx, input.BotToken ?? "");
+            var exam = service.Start(id, input.DisciplineId, ctx);
             ctx.Response.Cookies.Append("HandesTECH.Visitor", id, new CookieOptions { HttpOnly = true, Secure = !app.Environment.IsDevelopment(), SameSite = SameSiteMode.Strict, MaxAge = TimeSpan.FromHours(2), Path = "/api/assessment" });
-            return new { verified = true };
+            return Results.Ok(exam);
         }).RequireRateLimiting("sensitive");
         api.MapGet("/assessment/session", (AssessmentService service, HttpContext ctx) => service.Session(ctx.Request.Cookies["HandesTECH.Visitor"]));
         api.MapPost("/assessment/start", (StartRequest input, AssessmentService service, HttpContext ctx) =>
@@ -87,26 +87,20 @@ public static class Endpoints
             catch (NullReferenceException) { throw new AcademyException("Catalogue fields cannot be null."); }
             var d = store.Read(); d.Reports = []; return d;
         });
-        admin.MapGet("/status", (AcademyStore store, EmailService mail, AssessmentService service, HttpContext ctx) =>
+        admin.MapGet("/status", (AcademyStore store, AssessmentService service, HttpContext ctx) =>
         {
             var d = store.Read();
-            return new { emailConfigured = mail.Configured, botConfigured = service.BotConfigured, localTesting = service.LocalTesting(ctx),
+            return new { botConfigured = service.BotConfigured, localTesting = service.LocalTesting(ctx),
                 readiness = d.Disciplines.Select(x => new { id = x.Id, ready = AcademyStore.Ready(d, x.Id) }),
-                recipient = mail.ReportRecipient, recipientConfigured = mail.ReportConfigured, reports = d.Reports.OrderByDescending(x => x.CreatedAt).Take(100) };
+                reports = d.Reports.OrderByDescending(x => x.CreatedAt).Take(100) };
         });
         admin.MapGet("/applications", (IWebHostEnvironment env) => Directory.EnumerateFiles(Path.Combine(env.WebRootPath, "assets"), "app-*.svg").Select(p => Path.GetFileNameWithoutExtension(p)[4..]).OrderBy(x => x));
-        admin.MapPost("/reports/{id}/retry", (string id, AcademyStore store) =>
-        {
-            store.Change(d => { var r = d.Reports.Find(x => x.Id == id) ?? throw new AcademyException("Report not found.", 404);
-                if (r.Delivery == "sent") throw new AcademyException("This report was already sent."); r.Delivery = "pending"; r.DeliveryAttempts = 0; r.LastDeliveryAttempt = null; });
-            return Results.Ok();
-        });
         api.MapPost("/chat", (ChatRequest input, AcademyStore store) =>
         {
             if (string.IsNullOrWhiteSpace(input.Message) || input.Message.Length > 1000) throw new AcademyException("Ask a question of up to 1,000 characters.");
             var d = store.Read(); var message = input.Message.ToLowerInvariant();
             if (new[] { "exam", "assess", "test", "اختبار", "تقييم" }.Any(message.Contains))
-                return Results.Ok(new { reply = "Choose a discipline on the assessment page. Available assessments require email-code verification and a bot check. Results show a score and learning advice for every path. A report is shared with the HandesTECH team. This is learning guidance, not a qualification.", links = new[] { new { title = "Explore assessments", url = "assessment.html" } } });
+                return Results.Ok(new { reply = "Choose a discipline on the assessment page. Available assessments do not require an email address. Results show a score and learning advice for every path. Results are saved privately in the administration panel. This is learning guidance, not a qualification.", links = new[] { new { title = "Explore assessments", url = "assessment.html" } } });
             var words = message.Split([' ', ',', '.', '?', '!'], StringSplitOptions.RemoveEmptyEntries).Where(w => w.Length > 2
                 && !new[] { "the", "and", "for", "can", "you", "what", "how", "want", "learn", "course", "courses", "with", "need" }.Contains(w)).ToArray();
             var selected = PublishedCourses(d).Select(c => new { course = c, score = words.Count(w => (c.Title + " " + c.Scope + " " + d.Disciplines.Single(x => x.Id == c.DisciplineId).Name + " " + d.Paths.Single(p => p.Id == c.PathId).Name).Contains(w, StringComparison.OrdinalIgnoreCase)) })
@@ -120,8 +114,7 @@ public static class Endpoints
         && d.Paths.Any(p => p.Id == c.PathId && p.Published) && AssessmentService.AncestorsPublished(c, d));
     private static string LegacyPath(string path, string discipline) => path.StartsWith(discipline + "-") ? path[(discipline.Length + 1)..] : path;
     public sealed record SetupRequest(string Password);
-    public sealed record CodeRequest(string Email, string BotToken, bool Consent = false);
-    public sealed record VerifyRequest(string ChallengeId, string Code);
+    public sealed record GuestRequest(string DisciplineId, string? BotToken = null, bool Consent = false);
     public sealed record StartRequest(string DisciplineId);
     public sealed record SubmitRequest(Answer[] Answers);
     public sealed record LoginRequest(string Password);

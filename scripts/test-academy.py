@@ -8,7 +8,7 @@ test_root.mkdir(parents=True,exist_ok=True)
 scratch=Path(tempfile.mkdtemp(prefix='handestech-tests-',dir=str(test_root)))
 env=os.environ.copy()
 env.update({'ASPNETCORE_ENVIRONMENT':'Development','Academy__DataDirectory':str(scratch/'data'),
- 'Academy__LocalTesting':'true','Email__DevelopmentPickupDirectory':str(scratch/'mail'),'Assessment__ReportRecipient':'owner@example.test','Academy__PublicRequestLimit':'300','Academy__SensitiveRequestLimit':'100'})
+ 'Academy__LocalTesting':'true','Academy__PublicRequestLimit':'300','Academy__SensitiveRequestLimit':'100'})
 password='Disposable-integration-password-123!'
 dll=Path(os.environ.get('HANDESTECH_TEST_DLL',str(root/'bin/Debug/net10.0/HandesTECH.dll')))
 env.pop('Admin__PasswordHash',None)
@@ -86,17 +86,10 @@ try:
  data['assessmentModes']['electrical']='enabled'
  data=call('/api/admin/catalog','PUT',data)
  call('/api/assessment/start','POST',{'disciplineId':'electrical'},expected=401)
- call('/api/assessment/code','POST',{'email':'participant@example.test','botToken':''},expected=400)
- call('/api/assessment/code','POST',{'email':'not-an-email','botToken':'','consent':True},expected=400)
- challenge=call('/api/assessment/code','POST',{'email':'participant@example.test','botToken':'','consent':True})['challengeId']
- call('/api/assessment/code','POST',{'email':'participant@example.test','botToken':'','consent':True},expected=429)
- mail=next((scratch/'mail').glob('*.eml'))
- msg=email.message_from_bytes(mail.read_bytes());text=msg.get_payload(decode=True).decode()
- code=re.search(r'code is (\d{6})',text).group(1)
- call('/api/assessment/verify','POST',{'challengeId':challenge,'code':'000000'},expected=400)
- call('/api/assessment/verify','POST',{'challengeId':challenge,'code':code})
- call('/api/assessment/verify','POST',{'challengeId':challenge,'code':code},expected=400)
- exam=call('/api/assessment/start','POST',{'disciplineId':'electrical'})
+ call('/api/assessment/guest','POST',{'disciplineId':'electrical'},expected=400)
+ call('/api/assessment/guest','POST',{'disciplineId':'architecture','consent':True},expected=409)
+ exam=call('/api/assessment/guest','POST',{'disciplineId':'electrical','consent':True})
+ assert call('/api/assessment/guest','POST',{'disciplineId':'electrical','consent':True})==exam
  assert call('/api/assessment/session')['state']=='active'
  assert len(exam['questions'])==24 and all('correctIndex' not in q and 'explanation' not in q for q in exam['questions'])
  assert call('/api/assessment/start','POST',{'disciplineId':'electrical'})==exam
@@ -115,15 +108,13 @@ try:
  call('/App_Data/academy.json',expected=404)
  call('/Academy/seed-questions.json',expected=404)
  call('/App_Data/settings.json',expected=404)
- # The outbox persists and sends to the owner through local pickup.
- for i in range(200):
-  state=json.loads((scratch/'data/academy.json').read_text())
-  if state['reports'][0]['delivery']=='sent':break
-  time.sleep(.1)
- else:raise AssertionError('Report delivery did not complete')
- assert state['revision']==data['revision'],'Outbox updates must not invalidate catalogue edits'
- mails=[email.message_from_bytes(p.read_bytes()) for p in (scratch/'mail').glob('*.eml')]
- assert any('owner@example.test' in str(m['To']) and 'assessment' in str(email.header.make_header(email.header.decode_header(m['Subject']))).lower() for m in mails)
- print('PASS: {} HTTP checks; first-run setup, catalogue validation, private answer keys, CSRF, auth, subcourses, OTP consent and replay, shuffled questions, focus areas, resume, scoring, idempotency and durable email outbox.'.format(checks))
+ # No email address, code or delivery service is needed; results remain private and durable.
+ state=json.loads((scratch/'data/academy.json').read_text(encoding='utf8'))
+ assert state['reports'][0]['delivery']=='stored' and state['reports'][0]['email']==''
+ assert not list((scratch/'mail').glob('*.eml'))
+ private_status=call('/api/admin/status');assert private_status['reports'][0]['id']==report['id']
+ assert 'emailConfigured' not in private_status and 'recipient' not in private_status
+ print('PASS: {} HTTP checks; admin, catalogue, private keys, CSRF, anonymous consent, shuffled questions, focus areas, resume, scoring, idempotency and stored reports without email.'.format(checks))
+
 finally:
  proc.terminate();proc.wait(timeout=15);log.close()

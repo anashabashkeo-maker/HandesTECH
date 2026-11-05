@@ -23,8 +23,6 @@ if (OperatingSystem.IsWindows()) protection.ProtectKeysWithDpapi();
 builder.WebHost.ConfigureKestrel(o => o.Limits.MaxRequestBodySize = 2_000_000);
 builder.Services.AddSingleton<AcademyStore>();
 builder.Services.AddSingleton<AssessmentService>();
-builder.Services.AddSingleton<EmailService>();
-builder.Services.AddHostedService<ReportMailer>();
 builder.Services.AddHttpClient("turnstile", client => client.Timeout = TimeSpan.FromSeconds(15));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(o =>
 {

@@ -1,124 +1,35 @@
 # HandesTECH administration and assessments
 
-The website now includes `/admin.html`, `/assessment.html`, and a course-guide chatbot. Run the ASP.NET Core project to use them. GitHub Pages and other static-only hosting cannot run the administration, assessment, verification, or chat APIs. Existing static previews retain their original read-only course outlines.
+Open `VisualStudio/HandesTECH.sln` in Visual Studio and run the ASP.NET Core/.NET 10 project. Local website: http://localhost:5180.
 
-## What is included
+## Admin access
 
-- Course and learning-path administration, draft changes, publishing, nested subcourses, cascade deletion with confirmation, and stale-edit protection.
-- Five existing disciplines, 16 initial paths and 112 imported course outlines. Administration becomes the live catalogue source; it does not rewrite the checked-in static preview JSON.
-- 240 private draft multiple-choice questions in the local bank: 15 per path, five per difficulty. The real bank and its answer keys are excluded from public source and deployment; import your reviewed bank through the authenticated admin screen. Questions and explanations require subject-expert review before use. Expand and calibrate the bank for serious placement decisions, including more detailed telecommunications scenarios.
-- Assessment states per discipline: Hidden, Coming soon, Enabled. An enabled assessment requires at least two reviewed questions at each difficulty in every published path. Email and bot configuration must also be ready for public access.
-- Two randomly selected questions per difficulty per path: six per path, 24 for Electrical and 18 for each other discipline. Questions and options are shuffled; answer keys stay on the server. An attempt retains its catalogue/question snapshot. Pausing a discipline blocks new attempts and submissions.
-- Email-code verification (10 minutes, five attempts), server-validated Cloudflare Turnstile, rate limits, authenticated admin cookies and CSRF protection.
-- Separate path scores and easy/medium/hard breakdowns, course-outline recommendations and advice, printable result, durable email outbox addressed to the privately configured report recipient.
-- A catalogue-based chatbot that helps with course discovery and assessment questions. No paid AI service or AI key is needed. It does not provide general engineering calculations or invent prices and dates. Conversation text is not stored or emailed by the application.
+Shift-click a brand logo or hold it for 1.5 seconds. Admin is hidden from the public navigation and protected by authentication. First-run local setup creates your own password (minimum 16 characters); no default password is supplied. Hosted Production requires `Admin__PasswordHash` in private server configuration. Private settings and data stay in ignored `App_Data`, outside `wwwroot`.
 
-## 1. Start locally and set an admin password
+Manage courses, nested subcourses, learning paths, application knowledge, private questions and availability. Apply draft edits, then save to publish. Deleting a path also deletes its courses/questions from the draft; review the confirmation. Stale revisions and parent cycles are rejected. Unpublished parents hide descendants.
 
-Install the .NET 10 SDK. Open the existing solution in Visual Studio and build it, or run `dotnet build` in the project directory.
+## Assessments without email
 
-On this computer, open `http://localhost:5180/admin.html` and create your administrator password (at least 16 characters). Setup is available only in Development from loopback, before an administrator exists. The hash is saved in private `App_Data/settings.json`; there is no default password.
+No participant email address, account, verification code, sending mailbox or SMTP configuration is required. Participants consent to private result storage, take randomized multiple-choice questions, then see scores by path and difficulty, focus topics, course recommendations and advice. Reports are stored privately in Admin and are not emailed. Existing historic reports are preserved. The old email endpoints and retry action are no longer exposed, and the email worker is not registered.
 
-For a hosted Production instance, generate a password hash:
+Choose Hidden, Coming soon or Enabled per discipline. Every published path needs at least two reviewed questions at each difficulty before enabling. The local bank contains 240 draft questions (15 per path) requiring subject-expert review. The real bank/answer keys are excluded from public source and deployment. Authenticated admin supports private JSON import/export. Imports must be reviewed before activation.
 
-```powershell
-dotnet run --no-launch-profile -- --hash-admin-password
-```
+Each attempt selects two questions per difficulty per path: six per path, 24 for Electrical and 18 for other disciplines. Questions/options shuffle, answer keys remain private, and attempt snapshots prevent mid-exam edits changing scoring. Answers can be restored in the same browser tab. Results are learning guidance, not professional certification. The initial question bank is in English; the participant UI supports Arabic/RTL.
 
-Enter a unique password of at least 16 characters followed by Enter. This small command reads standard input; the typed password may be visible in the terminal. Use a private terminal session. Copy only the resulting hash into a server secret named `Admin__PasswordHash`. Never commit a password or hash to GitHub. No default administrator password is supplied.
+Rate limiting and CSRF protection are active. Turnstile is optional; if configured, the start endpoint validates its token, exact hostname and assessment action. Configure `Turnstile__SiteKey`, `Turnstile__SecretKey`, `Turnstile__Hostname` only if you want it. Local test bypass applies only to Development loopback requests.
 
-For a local session, set these environment variables in PowerShell, using your generated hash:
+## Chatbot
 
-```powershell
-$env:ASPNETCORE_ENVIRONMENT = 'Development'
-$env:Admin__PasswordHash = '<generated hash>'
-dotnet run --no-launch-profile --urls http://localhost:5180
-```
+The visible Chat with HandesTECH button works on GitHub Pages and the local server. It searches the public course catalogue in English/Arabic and links to course details, services and assessments. It uses no paid AI service. It cannot answer arbitrary engineering calculations, confirm course fees/dates, or access private admin data. Chat text remains in the page memory and is not submitted or stored on the server.
 
-Open `http://localhost:5180/admin.html` and sign in with your password. The admin page is absent from public navigation. Shift-click either brand logo, or press and hold it for 1.5 seconds, to open admin access. A normal click still goes home. This shortcut does not bypass administrator authentication. Open `http://localhost:5180/assessment.html` for the participant screen.
+## Online hosting
 
-For Visual Studio F5, put the same values into your local debugging environment or your user-secrets configuration; do not commit secrets to `launchSettings.json`. Restart the application after changing server configuration.
+GitHub Pages is a static preview: chatbot and course browsing work there; admin saving and assessments require an ASP.NET Core host. Use one application instance with HTTPS and a persistent private data directory (`Academy__DataDirectory`) outside `wwwroot`. A custom domain can wait. No mailbox is needed.
 
-## 2. Set up sending email
+For production, set `ASPNETCORE_ENVIRONMENT=Production`, administrator password hash and private persistent storage. Configure trusted proxy/HTTPS settings. Back up `academy.json` and Data Protection keys, establish a retention/deletion policy for results, and protect private bank exports. Windows keys use DPAPI; protect Linux keys at rest as appropriate. In-memory attempts expire after two hours and reset if the app restarts. Use a transactional database/distributed sessions before scaling to multiple instances.
 
-Choose an SMTP provider that supports authenticated TLS submission on port 587, such as your business mailbox provider or a transactional email service. The recipient can remain your existing Gmail address; the sender should be a verified address you control, such as `noreply@handestech.com`.
+Azure Windows App Service F1 is an evaluation option, not a supported production plan. No cloud resources have been created. Publish with `dotnet publish HandesTECH.csproj -c Release -o .artifacts/publish`. Never deploy private data, backups or answer banks as public assets; import the private bank after authenticated setup.
 
-Configure these server secrets/settings:
+## Validation
 
-| Name | Value |
-| --- | --- |
-| `Email__Host` | SMTP hostname from your provider |
-| `Email__Port` | Usually `587`; this integration uses STARTTLS |
-| `Email__Username` | SMTP username |
-| `Email__Password` | SMTP password or provider app password |
-| `Email__From` | Verified sender address |
-| `Assessment__ReportRecipient` | Private destination for participant reports |
-
-Add the provider’s domain verification, SPF and DKIM records to Cloudflare DNS and configure DMARC as directed by the provider. Cloudflare Email Routing alone does not provide the SMTP mailbox/submission configuration used here.
-
-Verification emails go to the participant. Assessment reports go to the privately configured report recipient. They are first saved privately, then sent by the background outbox. Temporary failures retry up to five times, spaced by at least two minutes. Admin → Assessments & reports shows pending/sent/failed delivery and allows retry after failure. A process crash immediately after SMTP acceptance can cause a duplicate email on retry; reports include a stable reference ID.
-
-The participant screen says a report is queued until SMTP accepts it. SMTP acceptance does not guarantee inbox delivery. Check the provider’s delivery logs and spam folder during launch testing.
-
-## 3. Configure Cloudflare Turnstile
-
-In Cloudflare, create a Turnstile widget for the exact production hostname. Configure:
-
-| Name | Value |
-| --- | --- |
-| `Turnstile__SiteKey` | Public widget site key |
-| `Turnstile__SecretKey` | Private verification secret |
-| `Turnstile__Hostname` | Exact hostname used by participants, e.g. `handestech.com` |
-
-The server validates success, hostname and the `assessment` action through Cloudflare Siteverify. Choose one canonical hostname for the assessment page and redirect other hostnames to it. Bot protection reduces abuse; it is not an absolute guarantee that every visitor is human.
-
-Reference: [Cloudflare server-side validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/).
-
-## 4. Review and publish
-
-1. Sign in at `/admin.html`.
-2. **Courses & subcourses:** choose a discipline and item, edit it, select **Apply to draft**, then **Save changes**. Use Parent course to create a subcourse. Parents must be in the same path. Unpublished parents hide their descendants.
-3. **Learning paths:** add, rename, publish/unpublish, or delete paths. Deleting a path removes its courses and questions from the draft; inspect the confirmation before saving.
-4. **Question bank:** review accuracy, difficulty, distractors, explanation and related course mappings. Mark reviewed questions individually, apply them to the draft and save. Starter questions are preliminary and do not establish validated placement thresholds.
-5. **Assessments & reports:** check coverage, email and bot configuration. Choose Enabled for a discipline and save. Hidden removes its public assessment card; Coming soon displays a disabled card.
-6. Take a real test using a mailbox you control. Confirm code delivery, bot validation, results and receipt at your Gmail address before announcing availability.
-
-Editing paths or questions returns the affected discipline to Coming soon so you can review coverage before enabling again. A short diagnostic has limited precision: each initial difficulty score uses only two items. Recommendations prioritize courses related to missed questions, then the suggested level. They guide course exploration, not formal professional certification or automatic enrolment.
-
-## 5. Deploy and keep data
-
-Use hosting that runs **ASP.NET Core/.NET 10**, with HTTPS and a persistent private data volume. Registering a domain in Cloudflare does not itself provide this application hosting.
-
-- Set `ASPNETCORE_ENVIRONMENT=Production`.
-- Set `Academy__DataDirectory` to a persistent private folder **outside `wwwroot`**. The default is the project’s `App_Data` directory. Give only the app and server administrators access.
-- Run **one application instance**. The JSON store is designed for one process. Use a transactional database and a distributed verification/rate-limiting store before scaling to multiple replicas.
-- Back up `academy.json` and the private `keys` subdirectory. Windows keys use DPAPI. On Linux, protect the volume and configure an appropriate certificate/key-management service if encryption at rest for Data Protection keys is required.
-- Verification challenges and active attempts are in memory and expire after two hours at the latest. App restarts require participants to verify again. Completed reports and the delivery outbox persist.
-- Stored reports include the participant email and learning results. Establish a retention period and a deletion process before public launch; the initial admin UI does not automate retention or deletion. The participant consent text directs deletion requests to HandesTECH. Configure a working company contact channel before public launch.
-- Keep private settings out of source control, logs and static hosting folders. `App_Data/` is ignored by Git. Do not publish build logs or test mail pickup files.
-- Apply the hosting provider’s trusted reverse-proxy/HTTPS configuration. The rate limiter uses the socket IP rather than trusting arbitrary forwarded headers. Behind a proxy, configure trusted forwarded headers to avoid grouping all participants under the proxy’s IP.
-
-## Testing without sending email
-
-The integration test creates a disposable store, reviews only its test copy of the questions, and uses a private `.eml` pickup directory. No real email is sent.
-
-```powershell
-dotnet build
-python scripts/test-academy.py
-```
-
-For manual localhost testing only, use `Academy__LocalTesting=true` and `Email__DevelopmentPickupDirectory=<private absolute path>`, with the environment set to Development. This mode bypasses Turnstile only for loopback requests and writes mail to disk. It is ignored in Production. Do not enable local testing on a shared development server.
-
-After testing, set up real SMTP and Turnstile and perform a real end-to-end launch test. The seeded question bank is imported only when a private catalogue is first created; subsequent startup does not overwrite your edits. Changes made by the admin are stored in `academy.json`, not regenerated by the static course-data script.
-
-## No accounts yet: suggested evaluation setup
-
-Keep GitHub Pages as the public preview while configuring an ASP.NET Core host. Azure App Service Windows F1 can be used for a free evaluation (60 CPU minutes/day, 1 GB storage). Microsoft does not support Free/Shared plans for production workloads. A custom domain is optional for evaluation. No cloud accounts or resources have been created by this project.
-
-Publish with `dotnet publish -c Release -o .artifacts/publish`, then deploy that output to a single Windows App Service configured for .NET 10. Set the private data directory to a persistent folder outside the deployed web root. Set the administrator hash, report recipient, SMTP and Turnstile settings above through the host's private configuration. Do not upload `App_Data`, backups or real question banks as public assets. Import the bank after authenticated sign-in. Configure the host's trusted proxy and HTTPS handling before launch.
-
-For sending email, use a verified SMTP sender. An existing Gmail mailbox can use an app password if its account supports app passwords and two-step verification; a custom domain is not required for that test. Do not use the normal Gmail password. Owner account setup and secret entry must be completed by the owner. Validate actual delivery before enabling the assessment.
-
-References: [Azure Windows pricing](https://azure.microsoft.com/en-us/pricing/details/app-service/windows/), [ASP.NET Core App Service quickstart](https://learn.microsoft.com/en-us/azure/app-service/quickstart-dotnetcore), [Google app passwords](https://support.google.com/mail/answer/185833).
-
-The server stores private reports until removed administratively. Establish retention/deletion procedures before launch. This single-process file store is suitable for a small initial deployment; use a transactional database and distributed sessions/rate limits before scaling out.
+Run `dotnet build HandesTECH.csproj` and `python scripts/test-academy.py`. Integration tests create disposable data, use synthetic questions if the private bank is absent, and confirm that no email is sent. Review technical questions and perform a real hosted end-to-end test before launch.
