@@ -1,0 +1,15 @@
+(async()=>{
+ if(location.pathname.endsWith('/admin.html')||!(await window.HandesAcademyRuntime.ready).enabled)return;
+ const style=document.createElement('link');style.rel='stylesheet';style.href='assets/academy.css?v=19';document.head.append(style);
+ const host=document.createElement('aside');host.className='guide';host.setAttribute('aria-label','HandesTECH course guide');
+ host.innerHTML='<button class="guide-toggle" aria-expanded="false" aria-controls="guide-panel">Course guide ↗</button><section class="guide-panel" id="guide-panel" aria-label="Course guide chat" hidden><div class="guide-head"><strong>HandesTECH course guide</strong><button class="guide-close" aria-label="Close course guide">×</button></div><div class="guide-messages" role="log" aria-live="polite" aria-relevant="additions"></div><small>Catalogue guidance. Engineering decisions, fees and dates need confirmation from the team. This chat is not emailed or saved as a conversation.</small><form class="guide-form"><input aria-label="Ask about courses or assessments" placeholder="Try: electrical design" maxlength="1000" required><button>Send</button></form></section>';
+ document.body.append(host);const toggle=host.querySelector('.guide-toggle'),panel=host.querySelector('.guide-panel'),log=host.querySelector('.guide-messages'),input=host.querySelector('input'),send=host.querySelector('.guide-form button');let token,busy=false;
+ function message(text,links=[],user=false){const item=document.createElement('div');item.className='guide-message'+(user?' user':'');item.textContent=text;links.forEach(l=>{const a=document.createElement('a');a.textContent=l.title;a.href=l.url;item.append(a);});log.append(item);while(log.childElementCount>25)log.firstChild.remove();log.scrollTop=log.scrollHeight;}
+ function close(){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus();}
+ toggle.onclick=()=>{panel.hidden=!panel.hidden;toggle.setAttribute('aria-expanded',String(!panel.hidden));if(!panel.hidden)input.focus();};host.querySelector('.guide-close').onclick=close;host.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+ message('Hello. Tell me your discipline or a skill you want to develop. I can help you explore course outlines and explain the assessments.');
+ host.querySelector('form').onsubmit=async e=>{e.preventDefault();if(busy)return;busy=true;send.disabled=true;const text=input.value.trim();if(!text){busy=false;send.disabled=false;return;}message(text,[],true);input.value='';
+  try{if(!token){const r=await fetch('/api/csrf',{cache:'no-store'});if(!r.ok)throw Error();token=(await r.json()).token;}const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json','X-CSRF-TOKEN':token},body:JSON.stringify({message:text})});if(!r.ok)throw Error();const d=await r.json();message(d.reply,d.links);}
+  catch{message('The course guide is unavailable right now. You can browse the academy or explore assessments directly.',[{title:'Courses',url:'courses.html'},{title:'Assessments',url:'assessment.html'}]);}finally{busy=false;send.disabled=false;input.focus();}
+ };
+})();

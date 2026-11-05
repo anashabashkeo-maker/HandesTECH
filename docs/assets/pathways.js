@@ -4,7 +4,7 @@
  const records=new Map();let serial=0;let currentPath='design';
  function row(title,level,scope,topics){const id='path-course-'+(++serial);records.set(id,{title,level,scope,topics,path:currentPath});return `<article class="course-row"><div><div class="course-row-title"><h4>${esc(title)}</h4>${currentPath==='ai'?'<span class="course-badge badge-hot">Hot</span>':currentPath==='bim'?'<span class="course-badge badge-trend">Trend</span>':level==='Beginner'?'<span class="course-badge badge-new">New</span>':''}</div><p>${esc(scope)}</p></div><button data-course="${id}" aria-label="Explore ${esc(title)}">↗</button></article>`;}
  const stage=(n,title,rows)=>rows;
- if(document.body.dataset.page==='discipline'){
+ if(document.body.dataset.page==='discipline'&&!(await window.HandesAcademyRuntime.ready).enabled){
   try{
    const res=await fetch('assets/paths-data.json?v=17');if(!res.ok)throw Error('data');const data=await res.json();const d=data.find(x=>x[0]===document.body.dataset.slug);if(!d)throw Error('discipline');
    const [slug,name,description,img,paths]=d;const modelSystems={electrical:['Lighting & power systems','Cable trays, conduits & containment','Telecom, ICT & security systems'],architecture:['Walls, floors & roofs','Rooms, areas & schedules','Facades & interior assemblies'],structural:['Concrete framing & foundations','Steel framing & connections','Reinforcement & schedules'],mechanical:['HVAC ducts & equipment','Hydronic piping','Plumbing, drainage & firefighting'],infrastructure:['Utility routes & shared coordinates','Chambers, duct banks & crossings','Linked civil models & quantities']}[slug];
@@ -42,6 +42,32 @@
    const subpaths=[...$('#design-panel').querySelectorAll('.learning-path')];if(subpaths.length>1){const nav=document.createElement('div');nav.className='design-subpaths';nav.setAttribute('role','tablist');nav.setAttribute('aria-label','Design specialisation');subpaths.forEach((panel,i)=>{panel.id='design-specialisation-'+i;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby','specialisation-tab-'+i);panel.hidden=i!==0;const b=document.createElement('button');b.type='button';b.id='specialisation-tab-'+i;b.setAttribute('role','tab');b.setAttribute('aria-controls',panel.id);b.setAttribute('aria-selected',i===0);b.tabIndex=i===0?0:-1;b.textContent=slug==='electrical'?(i===0?'Power design':'Telecommunications design'):paths[i][0];nav.append(b);function choose(){subpaths.forEach((p,j)=>{p.hidden=j!==i;nav.children[j].setAttribute('aria-selected',j===i);nav.children[j].tabIndex=j===i?0:-1;});reveal(panel);}b.addEventListener('click',choose);b.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){e.preventDefault();const delta=(e.key==='ArrowRight'?1:-1)*(document.documentElement.dir==='rtl'?-1:1);const n=e.key==='Home'?0:e.key==='End'?subpaths.length-1:(i+delta+subpaths.length)%subpaths.length;nav.children[n].focus();nav.children[n].click();}});});$('#design-panel').prepend(nav);}
   }catch{$('#path-content').innerHTML='<p>Learning paths could not load. Please reload the page.</p>';}
  }
+
+ // A live ASP.NET deployment uses the managed catalogue; static previews retain their outlines.
+ if(document.body.dataset.page==='discipline'&&(await window.HandesAcademyRuntime.ready).enabled){
+  try{
+   const response=await fetch('/api/catalog',{cache:'no-store'});
+   if(response.ok){
+    const catalog=await response.json(),slug=document.body.dataset.slug;
+    const paths=catalog.paths.filter(p=>p.disciplineId===slug),courses=catalog.courses.filter(c=>c.disciplineId===slug);
+    const deck=document.querySelector('[role="tablist"][aria-label="Learning path"]');
+    records.clear();
+    const short=id=>id.startsWith(slug+'-')?id.slice(slug.length+1):id;
+    deck.innerHTML=paths.map((p,i)=>`<button role="tab" id="${esc(short(p.id))}-tab" data-path="${esc(short(p.id))}" aria-controls="${esc(short(p.id))}-panel" aria-selected="${i===0}" tabindex="${i===0?0:-1}"><span class="path-symbol" aria-hidden="true">${p.kind==='ai'?'✧':p.kind==='bim'?'▧':'◇'}</span><span><strong>${esc(p.name)}</strong><small>${p.kind==='ai'?'Your discipline, with AI':p.kind==='bim'?'Model, document & coordinate':'Systems, calculations & shop drawings'}</small></span>${p.kind==='ai'?'<span class="course-badge badge-hot">Hot</span>':'<span aria-hidden="true">↗</span>'}</button>`).join('');
+    function courseTree(parent,pathId,depth=0){return courses.filter(c=>c.pathId===pathId&&(c.parentId||null)===parent).map(c=>{
+     const html=row(c.title,c.level,c.scope,c.topics);
+     return `<div class="managed-course" style="margin-inline-start:${Math.min(depth,4)*18}px">${depth?'<p class="eyebrow">SUBCOURSE</p>':''}${html}${courseTree(c.id,pathId,depth+1)}</div>`;
+    }).join('');}
+    $('#path-content').innerHTML=paths.map((p,i)=>{currentPath=p.kind;const panelKey=short(p.id);return `<div id="${esc(panelKey)}-panel" role="tabpanel" aria-labelledby="${esc(panelKey)}-tab" ${i?'hidden':''}><div class="path-header"><div><p class="eyebrow">LEARNING PATH</p><h2>${esc(p.name)}</h2><p>Build your skills one course at a time.</p></div></div><div class="course-collection">${courseTree(null,p.id)||'<p>Course outlines are coming soon.</p>'}</div></div>`;}).join('')||'<p>Learning paths are coming soon.</p>';
+    const tabs=[...deck.querySelectorAll('[data-path]')];
+    function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.dataset.path+'-panel').hidden=!active;});}
+    tabs.forEach((t,i)=>{t.onclick=()=>select(t);t.onkeydown=e=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){e.preventDefault();const delta=(e.key==='ArrowRight'?1:-1)*(document.documentElement.dir==='rtl'?-1:1),n=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+delta+tabs.length)%tabs.length;tabs[n].focus();select(tabs[n]);}};});
+    const requested=new URLSearchParams(location.search).get('path');const active=tabs.find(t=>t.dataset.path===requested);if(active)select(active);
+    const initialSelect=select;tabs.forEach(t=>t.addEventListener('click',()=>{const panel=document.getElementById(t.dataset.path+'-panel');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)panel.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:350,easing:'ease-out'});}));
+   }
+  }catch{$('#path-content').innerHTML='<p>Published courses could not load. Please reload the page.</p>';} 
+ }
+
  let opener;
  document.addEventListener('click',e=>{
   const c=e.target.closest('[data-course]');if(c){opener=c;const r=records.get(c.dataset.course);$('#course-detail').innerHTML=`<div class="brief-body"><p class="eyebrow">COURSE OUTLINE</p><h2 id="course-title">${esc(r.title)}</h2><p class="outcome">${esc(r.scope)}</p><h3>Inside this course</h3><ol>${r.topics.map(t=>'<li>'+esc(t)+'</li>').join('')}</ol><p>Study format and final project scope are confirmed before enrolment.</p><a class="button" href="course.html?discipline=${encodeURIComponent(document.body.dataset.slug)}&amp;title=${encodeURIComponent(r.title)}">View course <span aria-hidden="true">↗</span></a></div>`;$('#course-info').showModal();}

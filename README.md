@@ -1,24 +1,18 @@
-# HandesTECH local website
+# HandesTECH
 
-Open HandesTECH.slnx in Visual Studio 2026 and press F5.
-The local address is http://localhost:5180.
+Purple bilingual engineering website with 112 course outlines across five disciplines and 16 learning paths. Open `HandesTECH.slnx` in Visual Studio and run the ASP.NET Core/.NET 10 application at http://localhost:5180.
 
-Website content is in wwwroot/index.html and wwwroot/assets.
-This ASP.NET Core host serves the current website locally. It does not yet implement payments, accounts, bookings or video delivery.
+- `/admin.html`: first-run local administrator setup, courses/subcourses, paths, private question bank, assessment availability and reports.
+- `/assessment.html`: verified-email diagnostic, randomized questions, per-path results, focus areas and course recommendations.
+- GitHub Pages remains a static preview. It cannot run the private backend; assessments show Coming soon there.
 
-The proposed catalogue contains 44 course outlines across Structural, Architecture, Mechanical, Electrical Power, Telecommunications, Infrastructure, BIM & VDC, and Automation. Course availability and formats are confirmed by enquiry. Technical SVG diagrams are illustrative rather than construction documents.
+See [administration and deployment setup](docs/ADMIN-ASSESSMENT-SETUP.md). No administrator password, email credentials, real question bank or answer keys are shipped in source. Private local data lives in ignored `App_Data/`. The local draft bank has 240 questions requiring technical review before public enablement.
 
-The interface includes discipline, level and search filters, saved courses, syllabus dialogs, service enquiries, scroll reveals and reduced-motion support.
+## Validate
 
-## Visual Studio MCP
-
-Install the supplied VS-MCPServer.vsix extension by Coding With Calvin. Close Visual Studio if its installer requests it. After reopening, select Tools > MCP Server > Start Server. Its default endpoint is http://localhost:5050.
-
-Codex's configuration must contain:
-
-```toml
-[mcp_servers.visualstudio]
-url = "http://localhost:5050"
+```powershell
+dotnet build
+python scripts/test-academy.py
 ```
 
-Restart Codex if the new server is not discovered. A connection is verified only when the MCP server responds and its tools are available.
+Tests use disposable private storage and local email pickup; they send no real messages. Without the private bank they use synthetic test questions. Payments, course video delivery and enrolment are not implemented.

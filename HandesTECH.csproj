@@ -3,5 +3,11 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DefaultItemExcludes>$(DefaultItemExcludes);Backup/**;App_Data/**;docs/**</DefaultItemExcludes>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="App_Data/**;Academy/seed-questions.json;Backup/**;docs/**" />
+    <None Remove="Academy/seed-questions.json;scripts/seed-question-bank.cjs;Backup/**;docs/**" />
+    <None Remove="App_Data/**" />
+  </ItemGroup>
 </Project>

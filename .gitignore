@@ -8,3 +8,12 @@ UpgradeLog*.htm
 .env
 .env.*
 !.env.example
+App_Data/
+appsettings.Local.json
+
+# Private question bank and generation source; never publish answer keys.
+Academy/seed-questions.json
+scripts/seed-question-bank.cjs
+
+.artifacts/
+__pycache__/

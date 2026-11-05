@@ -1,0 +1,20 @@
+name: Academy checks
+on:
+  push:
+    paths: ['Academy/**', 'Program.cs', 'HandesTECH.csproj', 'scripts/test-academy.py', 'wwwroot/**', '.github/workflows/academy.yml']
+  pull_request:
+jobs:
+  verify:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: dotnet build HandesTECH.csproj
+      - run: python scripts/test-academy.py
+        env:
+          HANDESTECH_SYNTHETIC_BANK: '1'
