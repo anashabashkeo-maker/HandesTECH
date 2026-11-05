@@ -8,3 +8,5 @@ UpgradeLog*.htm
 .env
 .env.*
 !.env.example
+App_Data/
+appsettings.Local.json
