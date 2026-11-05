@@ -11,7 +11,9 @@ public sealed class AdminAccess(IConfiguration config, IWebHostEnvironment env)
     public string? PasswordHash => config["Admin:PasswordHash"] ?? createdHash;
     public bool Configured => !string.IsNullOrWhiteSpace(PasswordHash);
     public bool CanSetup(HttpContext context) => !Configured && env.IsDevelopment()
-        && context.Connection.RemoteIpAddress is { } address && IPAddress.IsLoopback(address);
+        && context.Connection.RemoteIpAddress is { } address && IPAddress.IsLoopback(address)
+        && (context.Request.Host.Host.Equals("localhost", StringComparison.OrdinalIgnoreCase)
+            || IPAddress.TryParse(context.Request.Host.Host.Trim('[', ']'), out var host) && IPAddress.IsLoopback(host));
     public void Setup(string password, HttpContext context)
     {
         lock (gate)
@@ -22,11 +24,12 @@ public sealed class AdminAccess(IConfiguration config, IWebHostEnvironment env)
             Directory.CreateDirectory(directory);
             var file = Path.Combine(directory, "settings.json");
             var settings = File.Exists(file) ? JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(File.ReadAllText(file))! : [];
-            createdHash = new PasswordHasher<string>().HashPassword("admin", password);
-            settings["Admin"] = JsonSerializer.SerializeToElement(new { PasswordHash = createdHash });
+            var passwordHash = new PasswordHasher<string>().HashPassword("admin", password);
+            settings["Admin"] = JsonSerializer.SerializeToElement(new { PasswordHash = passwordHash });
             var temporary = file + ".tmp";
             File.WriteAllText(temporary, JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true }));
             File.Move(temporary, file, true);
+            createdHash = passwordHash;
             if (config is IConfigurationRoot root) root.Reload();
         }
     }

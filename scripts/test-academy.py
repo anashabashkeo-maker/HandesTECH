@@ -49,6 +49,9 @@ try:
  csrf=call('/api/csrf')['token']
  call('/api/chat','POST',{'message':'BIM'},auth=False,expected=400)
  setup=call('/api/admin/setup');assert setup['canSetup'] and not setup['configured']
+ rebinding=urllib.request.Request(base+'/api/admin/setup',headers={'Host':'untrusted.example.test'})
+ with client.open(rebinding) as response: assert not json.load(response)['canSetup']
+ checks+=1
  call('/api/admin/setup','POST',{'password':'short'},expected=400)
  call('/api/admin/setup','POST',{'password':password})
  call('/api/admin/setup','POST',{'password':password},expected=403)
