@@ -1,5 +1,7 @@
 # HandesTECH local website
 
+Administration, email-verified assessments and the course-guide chatbot are now available through the ASP.NET host. See [the setup guide](docs/ADMIN-ASSESSMENT-SETUP.md). Assessments start as Coming soon; no email credentials or administrator password are included. Static previews do not include the backend.
+
 Open HandesTECH.slnx in Visual Studio 2026 and press F5.
 The local address is http://localhost:5180.
 
