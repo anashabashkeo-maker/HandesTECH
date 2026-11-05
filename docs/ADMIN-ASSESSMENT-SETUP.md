@@ -35,7 +35,7 @@ $env:Admin__PasswordHash = '<generated hash>'
 dotnet run --no-launch-profile --urls http://localhost:5180
 ```
 
-Open `http://localhost:5180/admin.html` and sign in with your password. The admin page is deliberately absent from public navigation. Open `http://localhost:5180/assessment.html` for the participant screen.
+Open `http://localhost:5180/admin.html` and sign in with your password. The admin page is absent from public navigation. Shift-click either brand logo, or press and hold it for 1.5 seconds, to open admin access. A normal click still goes home. This shortcut does not bypass administrator authentication. Open `http://localhost:5180/assessment.html` for the participant screen.
 
 For Visual Studio F5, put the same values into your local debugging environment or your user-secrets configuration; do not commit secrets to `launchSettings.json`. Restart the application after changing server configuration.
 
