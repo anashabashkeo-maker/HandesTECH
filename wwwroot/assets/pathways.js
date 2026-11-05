@@ -42,6 +42,30 @@
    const subpaths=[...$('#design-panel').querySelectorAll('.learning-path')];if(subpaths.length>1){const nav=document.createElement('div');nav.className='design-subpaths';nav.setAttribute('role','tablist');nav.setAttribute('aria-label','Design specialisation');subpaths.forEach((panel,i)=>{panel.id='design-specialisation-'+i;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby','specialisation-tab-'+i);panel.hidden=i!==0;const b=document.createElement('button');b.type='button';b.id='specialisation-tab-'+i;b.setAttribute('role','tab');b.setAttribute('aria-controls',panel.id);b.setAttribute('aria-selected',i===0);b.tabIndex=i===0?0:-1;b.textContent=slug==='electrical'?(i===0?'Power design':'Telecommunications design'):paths[i][0];nav.append(b);function choose(){subpaths.forEach((p,j)=>{p.hidden=j!==i;nav.children[j].setAttribute('aria-selected',j===i);nav.children[j].tabIndex=j===i?0:-1;});reveal(panel);}b.addEventListener('click',choose);b.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){e.preventDefault();const delta=(e.key==='ArrowRight'?1:-1)*(document.documentElement.dir==='rtl'?-1:1);const n=e.key==='Home'?0:e.key==='End'?subpaths.length-1:(i+delta+subpaths.length)%subpaths.length;nav.children[n].focus();nav.children[n].click();}});});$('#design-panel').prepend(nav);}
   }catch{$('#path-content').innerHTML='<p>Learning paths could not load. Please reload the page.</p>';}
  }
+ // A live ASP.NET deployment uses the managed catalogue; static previews retain their outlines.
+ if(document.body.dataset.page==='discipline'){
+  try{
+   const response=await fetch('/api/catalog',{cache:'no-store'});
+   if(response.ok){
+    const catalog=await response.json(),slug=document.body.dataset.slug;
+    const paths=catalog.paths.filter(p=>p.disciplineId===slug),courses=catalog.courses.filter(c=>c.disciplineId===slug);
+    const deck=document.querySelector('[role="tablist"][aria-label="Learning path"]');
+    records.clear();
+    const short=id=>id.startsWith(slug+'-')?id.slice(slug.length+1):id;
+    deck.innerHTML=paths.map((p,i)=>`<button role="tab" id="${esc(short(p.id))}-tab" data-path="${esc(short(p.id))}" aria-controls="${esc(short(p.id))}-panel" aria-selected="${i===0}" tabindex="${i===0?0:-1}"><span>${esc(p.name)}</span></button>`).join('');
+    function courseTree(parent,pathId,depth=0){return courses.filter(c=>c.pathId===pathId&&(c.parentId||null)===parent).map(c=>{
+     const html=row(c.title,c.level,c.scope,c.topics);
+     return `<div class="managed-course" style="margin-inline-start:${Math.min(depth,4)*18}px">${depth?'<p class="eyebrow">SUBCOURSE</p>':''}${html}${courseTree(c.id,pathId,depth+1)}</div>`;
+    }).join('');}
+    $('#path-content').innerHTML=paths.map((p,i)=>{currentPath=short(p.id);return `<div id="${esc(currentPath)}-panel" role="tabpanel" aria-labelledby="${esc(currentPath)}-tab" ${i?'hidden':''}><div class="path-header"><div><p class="eyebrow">LEARNING PATH</p><h2>${esc(p.name)}</h2><p>Build your skills one course at a time.</p></div></div><div class="course-collection">${courseTree(null,p.id)||'<p>Course outlines are coming soon.</p>'}</div></div>`;}).join('')||'<p>Learning paths are coming soon.</p>';
+    const tabs=[...deck.querySelectorAll('[data-path]')];
+    function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.dataset.path+'-panel').hidden=!active;});}
+    tabs.forEach((t,i)=>{t.onclick=()=>select(t);t.onkeydown=e=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){e.preventDefault();const delta=(e.key==='ArrowRight'?1:-1)*(document.documentElement.dir==='rtl'?-1:1),n=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+delta+tabs.length)%tabs.length;tabs[n].focus();select(tabs[n]);}};});
+    const requested=new URLSearchParams(location.search).get('path');const active=tabs.find(t=>t.dataset.path===requested);if(active)select(active);
+   }
+  }catch{ /* Static preview: retain the existing read-only outlines. */ }
+ }
+
  let opener;
  document.addEventListener('click',e=>{
   const c=e.target.closest('[data-course]');if(c){opener=c;const r=records.get(c.dataset.course);$('#course-detail').innerHTML=`<div class="brief-body"><p class="eyebrow">COURSE OUTLINE</p><h2 id="course-title">${esc(r.title)}</h2><p class="outcome">${esc(r.scope)}</p><h3>Inside this course</h3><ol>${r.topics.map(t=>'<li>'+esc(t)+'</li>').join('')}</ol><p>Study format and final project scope are confirmed before enrolment.</p><a class="button" href="course.html?discipline=${encodeURIComponent(document.body.dataset.slug)}&amp;title=${encodeURIComponent(r.title)}">View course <span aria-hidden="true">↗</span></a></div>`;$('#course-info').showModal();}
