@@ -3,6 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>HandesTECH-local-development</UserSecretsId>
     <DefaultItemExcludes>$(DefaultItemExcludes);Backup/**;App_Data/**;docs/**</DefaultItemExcludes>
   </PropertyGroup>
   <ItemGroup>

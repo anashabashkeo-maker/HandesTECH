@@ -15,10 +15,12 @@ The public bank has 336 questions across 16 paths, including engineering diagram
 ```powershell
 node scripts/test-browser-assessments.cjs
 node scripts/test-learning-guide.cjs
+node scripts/test-ai-client.cjs
+python scripts/test-ai-guide.py
 dotnet build HandesTECH.csproj
 python scripts/test-academy.py
 ```
 
 Tests use disposable private storage and confirm anonymous assessments never send email. Without the private bank they use synthetic test questions. Payments, course video delivery and enrolment are not implemented.
 
-The public chatbot keeps discipline, path, level and application context for follow-up questions, gives one focused course with application skills, and can explain the current assessment recommendation. Its conversation stays in page memory; only the existing browser assessment summary is shared between pages in session storage. It links to services without a backend or paid AI key. It is a course guide, not a general AI assistant.
+The default public chatbot keeps discipline, path, level and application context for follow-up questions and explains the current assessment recommendation using catalogue rules. An optional OpenAI connection now runs through ASP.NET with server-side keys, bounded history, validated course links, persistent daily request caps and explicit catalogue fallback. Visitors choose whether to share their assessment recommendation with AI. AI is disabled until a key and hosted API are configured; see [AI setup](docs/AI-CHATBOT-SETUP.md). API integration tests use a local stub and incur no provider charges.
