@@ -1,5 +1,7 @@
 # HandesTECH AI chatbot setup
 
+**Inactive prototype:** the public chat now uses the built-in catalogue guide at the owner’s request. It does not load the AI client or send messages to an AI provider. The integration below is retained for future development; its browser connection must be reinstated before these activation steps apply. Do not purchase API credits for the current chatbot.
+
 The AI connection uses the OpenAI Responses API through the existing ASP.NET Core application. It is disabled until an administrator supplies a key. GitHub Pages continues to run the catalogue guide until a hosted API is configured. This is preparation, not an activated AI subscription.
 
 ## Local Visual Studio setup

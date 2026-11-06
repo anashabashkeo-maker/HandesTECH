@@ -1,7 +1,7 @@
 name: Academy checks
 on:
   push:
-    paths: ['Academy/**', 'Program.cs', 'HandesTECH.csproj', 'scripts/test-academy.py', 'scripts/test-ai-guide.py', 'scripts/test-ai-client.cjs', 'scripts/test-browser-assessments.cjs', 'scripts/test-learning-guide.cjs', 'wwwroot/**', '.github/workflows/academy.yml']
+    paths: ['Academy/**', 'Program.cs', 'HandesTECH.csproj', 'scripts/test-academy.py', 'scripts/test-ai-guide.py', 'scripts/test-ai-client.cjs', 'scripts/test-smart-guide.cjs', 'scripts/test-browser-assessments.cjs', 'scripts/test-learning-guide.cjs', 'wwwroot/**', '.github/workflows/academy.yml']
   pull_request:
 jobs:
   verify:
@@ -17,6 +17,7 @@ jobs:
       - run: dotnet build HandesTECH.csproj
       - run: node scripts/test-browser-assessments.cjs
       - run: node scripts/test-learning-guide.cjs
+      - run: node scripts/test-smart-guide.cjs
       - run: node scripts/test-ai-client.cjs
       - run: python scripts/test-ai-guide.py
       - run: python scripts/test-academy.py
