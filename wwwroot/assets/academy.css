@@ -15,3 +15,5 @@
 @media print{.academy .recommendation-hero,.recommendation-score{background:white!important;color:#2e1944!important;border:1px solid #d4bde5}.recommendation-copy h2>span,.recommendation-score>small,.recommendation-score>p>span,.recommended-entry>span{color:#5e377a!important}.recommendation-action{display:none!important}}
 
 .academy h2[tabindex="-1"]:focus{outline:none}
+
+.academy .guide-toggle{width:48px;height:48px;min-height:48px;padding:0;justify-content:center;border-radius:50%;bottom:20px;inset-inline-end:14px}.academy .guide-toggle>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
