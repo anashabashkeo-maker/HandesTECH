@@ -1,0 +1,18 @@
+Third-party browser PDF assets
+
+jsPDF 4.2.0 — MIT
+Source: https://github.com/parallax/jsPDF/releases/tag/v4.2.0
+Distribution: https://unpkg.com/jspdf@4.2.0/dist/jspdf.umd.min.js
+License: vendor/jspdf-LICENSE.txt
+
+Amiri Regular and Bold — SIL Open Font License 1.1
+Source: https://github.com/google/fonts/tree/main/ofl/amiri
+License: fonts/Amiri-OFL.txt
+The fonts are embedded unchanged for Arabic text in locally generated PDF plans.
+
+SHA-256:
+db83fc811c81a9c9c218f1787ba52fc9b4d0d0fbe51184ce3a4a4f8a7ba9a091  vendor/jspdf.umd.min.js
+dc388ec35ff463288cdde3588a36fd4ed12a45deff053243b37309acc9ef583b  vendor/jspdf-LICENSE.txt
+ab391c4147d054c48976e98322ad0eefe1427aa0e0502a12a4c75d80a70cfcd7  fonts/Amiri-Regular.ttf
+cfccb794268e7d573d857e6d6a67f89cf8a053e8ffd85dfa0c8ec1bb36fc4827  fonts/Amiri-Bold.ttf
+72de68e5954f4fdd24702292ef5a32f003ca960ec9330dc86e5eefb5dffb9b22  fonts/Amiri-OFL.txt

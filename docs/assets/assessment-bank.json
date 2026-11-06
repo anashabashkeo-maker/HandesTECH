@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-browser-2",
+  "version": "2026-11-browser-3",
   "publicSelfAssessment": true,
   "disciplines": [
     {
@@ -8625,5 +8625,10 @@
       "disciplineId": "infrastructure",
       "mode": "enabled"
     }
-  ]
+  ],
+  "blueprint": {
+    "easy": 5,
+    "medium": 5,
+    "hard": 5
+  }
 }

@@ -1,6 +1,6 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.HandesBrowserAssessment=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
- const difficulties=['easy','medium','hard'],levels=['Beginner','Intermediate','Advanced','Professional'];
+ const questionsPerDifficulty=5,questionsPerPath=15,difficulties=['easy','medium','hard'],levels=['Beginner','Intermediate','Advanced','Professional'];
  const type=q=>q.type||'single',unique=values=>new Set(values).size===values.length;
  function check(ok,message){if(!ok)throw Error(message);}
  const equalSet=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&unique(a)&&JSON.stringify([...a].sort())===JSON.stringify([...b].sort());
@@ -28,7 +28,7 @@
    check(disciplines.has(a.disciplineId)&&['enabled','coming-soon','hidden'].includes(a.mode),'Assessment availability is invalid.');
    if(a.mode==='enabled')for(const p of bank.paths.filter(p=>p.disciplineId===a.disciplineId)){
     const pool=bank.questions.filter(q=>q.pathId===p.id);
-    for(const difficulty of difficulties)check(new Set(pool.filter(q=>q.difficulty===difficulty).map(q=>q.conceptKey||q.id)).size>=2,'This path does not have enough different questions.');
+    for(const difficulty of difficulties)check(new Set(pool.filter(q=>q.difficulty===difficulty).map(q=>q.conceptKey||q.id)).size>=questionsPerDifficulty,'This path does not have enough different questions.');
     check(pool.some(q=>q.difficulty==='easy'&&q.image)&&pool.some(q=>q.difficulty==='easy'&&type(q)==='multi')&&pool.some(q=>q.difficulty==='medium'&&type(q)==='matching')&&pool.some(q=>q.difficulty==='hard'&&type(q)==='ordering'),'A path is missing its mixed-format questions.');
    }
   }
@@ -53,6 +53,7 @@
    pick('easy',q=>Boolean(q.image));pick('easy',q=>type(q)==='multi');
    pick('medium',q=>type(q)==='matching');pick('medium',q=>type(q)!=='matching');
    pick('hard',q=>type(q)==='ordering');pick('hard',q=>type(q)!=='ordering');
+   for(const difficulty of difficulties)for(let i=2;i<questionsPerDifficulty;i++)pick(difficulty,()=>true);
   }
   return {attemptId:identifier(),version:bank.version,disciplineId,expiresAt:new Date(Date.now()+86400000).toISOString(),questions:shuffle(selected,rng)};
  }
@@ -60,13 +61,13 @@
   check(exam&&exam.version===bank.version&&typeof exam.attemptId==='string'&&Number.isFinite(Date.parse(exam.expiresAt))&&Date.parse(exam.expiresAt)>Date.now(),'Saved progress has expired or the assessment has changed. Please start again.');
   check(bank.assessments.some(a=>a.disciplineId===exam.disciplineId&&a.mode==='enabled'),'This assessment is not available.');
   const source=new Map(bank.questions.map(q=>[q.id,q])),paths=bank.paths.filter(p=>p.disciplineId===exam.disciplineId);
-  check(Array.isArray(exam.questions)&&exam.questions.length===paths.length*6&&unique(exam.questions.map(q=>q.id)),'The saved assessment is incomplete.');
+  check(Array.isArray(exam.questions)&&exam.questions.length===paths.length*questionsPerPath&&unique(exam.questions.map(q=>q.id)),'The saved assessment is incomplete.');
   for(const q of exam.questions){
    const original=source.get(q.id);check(original&&original.disciplineId===exam.disciplineId&&q.pathId===original.pathId&&q.prompt===original.prompt&&type(q)===type(original)&&q.image===original.image&&q.imageAlt===original.imageAlt,'The saved assessment could not be restored.');
    if(['single','multi'].includes(type(q)))check(equalSet(q.options,original.options),'The saved assessment could not be restored.');
    else{check(validItems(q.items)&&q.items.length===original.items.length&&q.items.every(x=>original.items.some(o=>x.id===o.id&&x.text===o.text&&x.image===o.image)),'The saved assessment could not be restored.');if(type(q)==='matching')check(validItems(q.matchOptions)&&q.matchOptions.length===original.matchOptions.length&&q.matchOptions.every(x=>original.matchOptions.some(o=>x.id===o.id&&x.text===o.text)),'The saved assessment could not be restored.');}
   }
-  for(const path of paths)for(const difficulty of difficulties){const group=exam.questions.filter(q=>q.pathId===path.id&&source.get(q.id).difficulty===difficulty);check(group.length===2&&unique(group.map(q=>source.get(q.id).conceptKey||q.id)),'The saved assessment has an invalid question mix.');}
+  for(const path of paths)for(const difficulty of difficulties){const group=exam.questions.filter(q=>q.pathId===path.id&&source.get(q.id).difficulty===difficulty);check(group.length===questionsPerDifficulty&&unique(group.map(q=>source.get(q.id).conceptKey||q.id)),'The saved assessment has an invalid question mix.');}
   return exam;
  }
  function validPartial(q,value){
@@ -94,5 +95,5 @@
   const priority=[...paths].sort((a,b)=>a.score-b.score||a.difficultyScores.easy-b.difficultyScores.easy||a.difficultyScores.medium-b.difficultyScores.medium)[0];
   return {id:exam.attemptId,version:bank.version,disciplineId:exam.disciplineId,createdAt:new Date().toISOString(),expiresAt:exam.expiresAt,delivery:'browser-only',paths,recommendation:{pathId:priority.pathId,name:priority.name,score:priority.score,level:priority.suggestedLevel,course:priority.courses[0]}};
  }
- return {validateBank,createExam,validateExam,grade,shuffle,isAnswered,restoreAnswers,type};
+ return {validateBank,createExam,validateExam,grade,shuffle,isAnswered,restoreAnswers,type,questionsPerPath,questionsPerDifficulty};
 });
