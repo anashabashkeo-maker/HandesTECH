@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-browser-1",
+  "version": "2026-11-browser-2",
   "publicSelfAssessment": true,
   "disciplines": [
     {
@@ -5703,6 +5703,2905 @@
       ],
       "topic": "Human approval",
       "conceptKey": "infrastructure-ai-concept-15"
+    },
+    {
+      "id": "electrical-design-power-rich-visual",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-power",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marker identifies the protective switching device in this single-line diagram?",
+      "courseIds": [
+        "electrical-course-1"
+      ],
+      "topic": "Power design",
+      "conceptKey": "electrical-design-power-rich-concept-visual",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "correctIndex": 0,
+      "explanation": "A is the protective device; B is the load and C is the earthing connection.",
+      "image": "assets/assessment-visuals/power.svg",
+      "imageAlt": "Single-line diagram with protective device A, load B and earthing connection C."
+    },
+    {
+      "id": "electrical-design-power-rich-multi-1",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-power",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs belong in a cable voltage-drop assessment?",
+      "courseIds": [
+        "electrical-course-1"
+      ],
+      "topic": "Power design",
+      "conceptKey": "electrical-design-power-rich-concept-multi-1",
+      "options": [
+        "Load current",
+        "Circuit length",
+        "Conductor electrical properties",
+        "Drawing sheet colour"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "electrical-design-power-rich-multi-2",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-power",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which documents help describe an electrical distribution design?",
+      "courseIds": [
+        "electrical-course-1"
+      ],
+      "topic": "Power design",
+      "conceptKey": "electrical-design-power-rich-concept-multi-2",
+      "options": [
+        "Single-line diagram",
+        "Panel schedules",
+        "Wall paint sample",
+        "CCTV retention report"
+      ],
+      "correctIndices": [
+        0,
+        1
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "electrical-design-power-rich-matching",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-power",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "electrical-course-1"
+      ],
+      "topic": "Power design",
+      "conceptKey": "electrical-design-power-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "DIALux",
+          "answerId": "right-0",
+          "image": "assets/app-dialux.svg"
+        },
+        {
+          "id": "left-1",
+          "text": "ETAP",
+          "answerId": "right-1",
+          "image": "assets/app-etap.svg"
+        },
+        {
+          "id": "left-2",
+          "text": "Single-line diagram",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Lighting calculations"
+        },
+        {
+          "id": "right-1",
+          "text": "Power-network analysis"
+        },
+        {
+          "id": "right-2",
+          "text": "Distribution topology"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "electrical-design-power-rich-ordering",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-power",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "electrical-course-1"
+      ],
+      "topic": "Power design",
+      "conceptKey": "electrical-design-power-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Confirm the brief and design criteria"
+        },
+        {
+          "id": "step-1",
+          "text": "Calculate and select the systems"
+        },
+        {
+          "id": "step-2",
+          "text": "Coordinate the interfaces and resolve issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Issue the checked delivery package"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "electrical-design-power-rich-multi-hard",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-power",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "Assume three 2 kW loads operate simultaneously on one 230 V single-phase circuit at unity power factor. Which statements are correct?",
+      "courseIds": [
+        "electrical-course-1"
+      ],
+      "topic": "Power design",
+      "conceptKey": "electrical-design-power-rich-concept-multi-hard",
+      "options": [
+        "The total power is 6 kW",
+        "The current is about 26.1 A",
+        "The total power is 2 kW",
+        "The current is about 2.6 A"
+      ],
+      "correctIndices": [
+        0,
+        1
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "electrical-design-telecom-rich-visual",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-telecom",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marker is the central connection point in this star network?",
+      "courseIds": [
+        "electrical-course-12"
+      ],
+      "topic": "Telecommunications design",
+      "conceptKey": "electrical-design-telecom-rich-concept-visual",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "correctIndex": 0,
+      "explanation": "A is the central node; each endpoint connects separately to it.",
+      "image": "assets/assessment-visuals/telecom.svg",
+      "imageAlt": "Star network: A is at the centre; B and C are endpoints."
+    },
+    {
+      "id": "electrical-design-telecom-rich-multi-1",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-telecom",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which checks matter when supplying endpoints using PoE?",
+      "courseIds": [
+        "electrical-course-12"
+      ],
+      "topic": "Telecommunications design",
+      "conceptKey": "electrical-design-telecom-rich-concept-multi-1",
+      "options": [
+        "Endpoint power requirements",
+        "Switch power budget",
+        "Cabling suitability",
+        "Rack paint colour"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "electrical-design-telecom-rich-multi-2",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-telecom",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which components can contribute to optical-link attenuation?",
+      "courseIds": [
+        "electrical-course-12"
+      ],
+      "topic": "Telecommunications design",
+      "conceptKey": "electrical-design-telecom-rich-concept-multi-2",
+      "options": [
+        "Fiber length and attenuation",
+        "Connector losses",
+        "Splice losses",
+        "Drawing text height"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "electrical-design-telecom-rich-matching",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-telecom",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "electrical-course-12"
+      ],
+      "topic": "Telecommunications design",
+      "conceptKey": "electrical-design-telecom-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Optical fiber",
+          "answerId": "right-0"
+        },
+        {
+          "id": "left-1",
+          "text": "PoE budget",
+          "answerId": "right-1"
+        },
+        {
+          "id": "left-2",
+          "text": "Patch panel",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Guides light through the link"
+        },
+        {
+          "id": "right-1",
+          "text": "Available power for endpoints"
+        },
+        {
+          "id": "right-2",
+          "text": "Termination and patching interface"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "electrical-design-telecom-rich-ordering",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-telecom",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "electrical-course-12"
+      ],
+      "topic": "Telecommunications design",
+      "conceptKey": "electrical-design-telecom-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Confirm the brief and design criteria"
+        },
+        {
+          "id": "step-1",
+          "text": "Calculate and select the systems"
+        },
+        {
+          "id": "step-2",
+          "text": "Coordinate the interfaces and resolve issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Issue the checked delivery package"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "electrical-design-telecom-rich-multi-hard",
+      "disciplineId": "electrical",
+      "pathId": "electrical-design-telecom",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "Which measures help make network redundancy effective against a physical route failure?",
+      "courseIds": [
+        "electrical-course-12"
+      ],
+      "topic": "Telecommunications design",
+      "conceptKey": "electrical-design-telecom-rich-concept-multi-hard",
+      "options": [
+        "Separate vulnerable physical routes",
+        "Test the intended failover behaviour",
+        "Check capacity in the failed-link condition",
+        "Give both cables different labels only"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "electrical-bim-rich-visual",
+      "disciplineId": "electrical",
+      "pathId": "electrical-bim",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marked zone shows a physical intersection between the duct and structural beam that needs coordination review?",
+      "courseIds": [
+        "electrical-course-21"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "electrical-bim-rich-concept-visual",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "correctIndex": 0,
+      "explanation": "A highlights the overlap between the duct route and structural beam.",
+      "image": "assets/assessment-visuals/bim.svg",
+      "imageAlt": "Duct crosses a structural beam at review zone A; B and C are clear duct sections."
+    },
+    {
+      "id": "electrical-bim-rich-multi-1",
+      "disciplineId": "electrical",
+      "pathId": "electrical-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs support coordinated model federation?",
+      "courseIds": [
+        "electrical-course-21"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "electrical-bim-rich-concept-multi-1",
+      "options": [
+        "Agreed coordinate strategy",
+        "Current approved discipline models",
+        "Consistent units",
+        "Uncontrolled copies from unknown revisions"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "electrical-bim-rich-multi-2",
+      "disciplineId": "electrical",
+      "pathId": "electrical-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which information may be required for an asset handover?",
+      "courseIds": [
+        "electrical-course-21"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "electrical-bim-rich-concept-multi-2",
+      "options": [
+        "Unique asset identifiers",
+        "Required parameters",
+        "Agreed classification information",
+        "A decorative file icon only"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "electrical-bim-rich-matching",
+      "disciplineId": "electrical",
+      "pathId": "electrical-bim",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "electrical-course-21"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "electrical-bim-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Revit",
+          "answerId": "right-0",
+          "image": "assets/app-revit.svg"
+        },
+        {
+          "id": "left-1",
+          "text": "Navisworks",
+          "answerId": "right-1",
+          "image": "assets/app-navisworks.svg"
+        },
+        {
+          "id": "left-2",
+          "text": "ACC",
+          "answerId": "right-2",
+          "image": "assets/app-acc.svg"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Authoring discipline model information"
+        },
+        {
+          "id": "right-1",
+          "text": "Federated model and clash review"
+        },
+        {
+          "id": "right-2",
+          "text": "Document and issue collaboration"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "electrical-bim-rich-ordering",
+      "disciplineId": "electrical",
+      "pathId": "electrical-bim",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "electrical-course-21"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "electrical-bim-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Agree the coordinates and information requirements"
+        },
+        {
+          "id": "step-1",
+          "text": "Federate the current discipline models"
+        },
+        {
+          "id": "step-2",
+          "text": "Resolve and verify the coordination issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Publish the accepted revision and update issue status"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "electrical-bim-rich-multi-hard",
+      "disciplineId": "electrical",
+      "pathId": "electrical-bim",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "A delivery must satisfy geometry, coordinate and asset-information requirements. Which checks support acceptance?",
+      "courseIds": [
+        "electrical-course-21"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "electrical-bim-rich-concept-multi-hard",
+      "options": [
+        "Validate required geometry",
+        "Check required asset identifiers",
+        "Verify coordinate alignment",
+        "Accept because the filename says Final"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "electrical-ai-rich-visual",
+      "disciplineId": "electrical",
+      "pathId": "electrical-ai",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which activity belongs at the missing gate before releasing this AI-assisted engineering output?",
+      "courseIds": [
+        "electrical-course-29"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "electrical-ai-rich-concept-visual",
+      "options": [
+        "Qualified verification of assumptions, sources and results",
+        "Automatic publication without checks",
+        "Deleting the source inputs",
+        "Changing the interface theme"
+      ],
+      "correctIndex": 0,
+      "explanation": "Engineering outputs need qualified checks before release.",
+      "image": "assets/assessment-visuals/ai.svg",
+      "imageAlt": "Inputs, AI draft, a missing release gate and release, connected in that order."
+    },
+    {
+      "id": "electrical-ai-rich-multi-1",
+      "disciplineId": "electrical",
+      "pathId": "electrical-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which controls support responsible use of an AI-generated engineering output?",
+      "courseIds": [
+        "electrical-course-29"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "electrical-ai-rich-concept-multi-1",
+      "options": [
+        "Validate units and assumptions",
+        "Check authoritative sources",
+        "Test automation on a recoverable copy",
+        "Publish without review"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "electrical-ai-rich-multi-2",
+      "disciplineId": "electrical",
+      "pathId": "electrical-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which prompt inputs reduce ambiguity in an engineering task?",
+      "courseIds": [
+        "electrical-course-29"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "electrical-ai-rich-concept-multi-2",
+      "options": [
+        "Explicit units",
+        "Boundary conditions and constraints",
+        "Expected validation checks",
+        "Unrelated interface colours"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "electrical-ai-rich-matching",
+      "disciplineId": "electrical",
+      "pathId": "electrical-ai",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "electrical-course-29"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "electrical-ai-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Prompt context",
+          "answerId": "right-0"
+        },
+        {
+          "id": "left-1",
+          "text": "Validation",
+          "answerId": "right-1"
+        },
+        {
+          "id": "left-2",
+          "text": "Rollback",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Units, assumptions and constraints"
+        },
+        {
+          "id": "right-1",
+          "text": "Independent checks of the output"
+        },
+        {
+          "id": "right-2",
+          "text": "Recovery to a known state"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "electrical-ai-rich-ordering",
+      "disciplineId": "electrical",
+      "pathId": "electrical-ai",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "electrical-course-29"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "electrical-ai-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Define inputs, constraints and acceptance checks"
+        },
+        {
+          "id": "step-1",
+          "text": "Run the automation on a controlled copy"
+        },
+        {
+          "id": "step-2",
+          "text": "Verify outputs against the acceptance checks"
+        },
+        {
+          "id": "step-3",
+          "text": "Approve and apply the reviewed changes"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "electrical-ai-rich-multi-hard",
+      "disciplineId": "electrical",
+      "pathId": "electrical-ai",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "An automation performs well overall but fails a critical category of tests. Which release controls are appropriate?",
+      "courseIds": [
+        "electrical-course-29"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "electrical-ai-rich-concept-multi-hard",
+      "options": [
+        "Evaluate the critical failures separately",
+        "Check applicable sources and constraints",
+        "Require a reviewable change list and recovery plan",
+        "Release solely because overall accuracy is high"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "architecture-design-rich-visual",
+      "disciplineId": "architecture",
+      "pathId": "architecture-design",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marked area provides shared circulation between the rooms?",
+      "courseIds": [
+        "architecture-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "architecture-design-rich-concept-visual",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "correctIndex": 1,
+      "explanation": "B is the connected corridor between the rooms.",
+      "image": "assets/assessment-visuals/architecture.svg",
+      "imageAlt": "Floor plan with rooms A and C separated by a connected corridor B."
+    },
+    {
+      "id": "architecture-design-rich-multi-1",
+      "disciplineId": "architecture",
+      "pathId": "architecture-design",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs should guide initial spatial planning?",
+      "courseIds": [
+        "architecture-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "architecture-design-rich-concept-multi-1",
+      "options": [
+        "The project brief",
+        "Site constraints",
+        "Applicable accessibility requirements",
+        "The designer's toolbar colour"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "architecture-design-rich-multi-2",
+      "disciplineId": "architecture",
+      "pathId": "architecture-design",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which performance interfaces deserve coordination in a facade detail?",
+      "courseIds": [
+        "architecture-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "architecture-design-rich-concept-multi-2",
+      "options": [
+        "Thermal continuity",
+        "Waterproofing continuity",
+        "Required fire performance",
+        "The PDF file icon"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "architecture-design-rich-matching",
+      "disciplineId": "architecture",
+      "pathId": "architecture-design",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "architecture-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "architecture-design-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Plan",
+          "answerId": "right-0"
+        },
+        {
+          "id": "left-1",
+          "text": "Section",
+          "answerId": "right-1"
+        },
+        {
+          "id": "left-2",
+          "text": "Elevation",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Horizontal arrangement of spaces"
+        },
+        {
+          "id": "right-1",
+          "text": "Vertical cut through the building"
+        },
+        {
+          "id": "right-2",
+          "text": "View of a building face"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "architecture-design-rich-ordering",
+      "disciplineId": "architecture",
+      "pathId": "architecture-design",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "architecture-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "architecture-design-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Confirm the brief and design criteria"
+        },
+        {
+          "id": "step-1",
+          "text": "Calculate and select the systems"
+        },
+        {
+          "id": "step-2",
+          "text": "Coordinate the interfaces and resolve issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Issue the checked delivery package"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "architecture-design-rich-multi-hard",
+      "disciplineId": "architecture",
+      "pathId": "architecture-design",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "A 12 m by 8 m floor allocates 18 square metres to a core and 12 square metres to circulation. Which statements are correct?",
+      "courseIds": [
+        "architecture-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "architecture-design-rich-concept-multi-hard",
+      "options": [
+        "The gross floor area is 96 square metres",
+        "66 square metres remain after both allocations",
+        "The gross floor area is 48 square metres",
+        "90 square metres remain"
+      ],
+      "correctIndices": [
+        0,
+        1
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "architecture-bim-rich-visual",
+      "disciplineId": "architecture",
+      "pathId": "architecture-bim",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marked zone shows a physical intersection between the duct and structural beam that needs coordination review?",
+      "courseIds": [
+        "architecture-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "architecture-bim-rich-concept-visual",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "correctIndex": 0,
+      "explanation": "A highlights the overlap between the duct route and structural beam.",
+      "image": "assets/assessment-visuals/bim.svg",
+      "imageAlt": "Duct crosses a structural beam at review zone A; B and C are clear duct sections."
+    },
+    {
+      "id": "architecture-bim-rich-multi-1",
+      "disciplineId": "architecture",
+      "pathId": "architecture-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs support coordinated model federation?",
+      "courseIds": [
+        "architecture-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "architecture-bim-rich-concept-multi-1",
+      "options": [
+        "Agreed coordinate strategy",
+        "Current approved discipline models",
+        "Consistent units",
+        "Uncontrolled copies from unknown revisions"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "architecture-bim-rich-multi-2",
+      "disciplineId": "architecture",
+      "pathId": "architecture-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which information may be required for an asset handover?",
+      "courseIds": [
+        "architecture-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "architecture-bim-rich-concept-multi-2",
+      "options": [
+        "Unique asset identifiers",
+        "Required parameters",
+        "Agreed classification information",
+        "A decorative file icon only"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "architecture-bim-rich-matching",
+      "disciplineId": "architecture",
+      "pathId": "architecture-bim",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "architecture-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "architecture-bim-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Revit",
+          "answerId": "right-0",
+          "image": "assets/app-revit.svg"
+        },
+        {
+          "id": "left-1",
+          "text": "Navisworks",
+          "answerId": "right-1",
+          "image": "assets/app-navisworks.svg"
+        },
+        {
+          "id": "left-2",
+          "text": "ACC",
+          "answerId": "right-2",
+          "image": "assets/app-acc.svg"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Authoring discipline model information"
+        },
+        {
+          "id": "right-1",
+          "text": "Federated model and clash review"
+        },
+        {
+          "id": "right-2",
+          "text": "Document and issue collaboration"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "architecture-bim-rich-ordering",
+      "disciplineId": "architecture",
+      "pathId": "architecture-bim",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "architecture-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "architecture-bim-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Agree the coordinates and information requirements"
+        },
+        {
+          "id": "step-1",
+          "text": "Federate the current discipline models"
+        },
+        {
+          "id": "step-2",
+          "text": "Resolve and verify the coordination issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Publish the accepted revision and update issue status"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "architecture-bim-rich-multi-hard",
+      "disciplineId": "architecture",
+      "pathId": "architecture-bim",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "A delivery must satisfy geometry, coordinate and asset-information requirements. Which checks support acceptance?",
+      "courseIds": [
+        "architecture-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "architecture-bim-rich-concept-multi-hard",
+      "options": [
+        "Validate required geometry",
+        "Check required asset identifiers",
+        "Verify coordinate alignment",
+        "Accept because the filename says Final"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "architecture-ai-rich-visual",
+      "disciplineId": "architecture",
+      "pathId": "architecture-ai",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which activity belongs at the missing gate before releasing this AI-assisted engineering output?",
+      "courseIds": [
+        "architecture-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "architecture-ai-rich-concept-visual",
+      "options": [
+        "Qualified verification of assumptions, sources and results",
+        "Automatic publication without checks",
+        "Deleting the source inputs",
+        "Changing the interface theme"
+      ],
+      "correctIndex": 0,
+      "explanation": "Engineering outputs need qualified checks before release.",
+      "image": "assets/assessment-visuals/ai.svg",
+      "imageAlt": "Inputs, AI draft, a missing release gate and release, connected in that order."
+    },
+    {
+      "id": "architecture-ai-rich-multi-1",
+      "disciplineId": "architecture",
+      "pathId": "architecture-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which controls support responsible use of an AI-generated engineering output?",
+      "courseIds": [
+        "architecture-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "architecture-ai-rich-concept-multi-1",
+      "options": [
+        "Validate units and assumptions",
+        "Check authoritative sources",
+        "Test automation on a recoverable copy",
+        "Publish without review"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "architecture-ai-rich-multi-2",
+      "disciplineId": "architecture",
+      "pathId": "architecture-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which prompt inputs reduce ambiguity in an engineering task?",
+      "courseIds": [
+        "architecture-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "architecture-ai-rich-concept-multi-2",
+      "options": [
+        "Explicit units",
+        "Boundary conditions and constraints",
+        "Expected validation checks",
+        "Unrelated interface colours"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "architecture-ai-rich-matching",
+      "disciplineId": "architecture",
+      "pathId": "architecture-ai",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "architecture-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "architecture-ai-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Prompt context",
+          "answerId": "right-0"
+        },
+        {
+          "id": "left-1",
+          "text": "Validation",
+          "answerId": "right-1"
+        },
+        {
+          "id": "left-2",
+          "text": "Rollback",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Units, assumptions and constraints"
+        },
+        {
+          "id": "right-1",
+          "text": "Independent checks of the output"
+        },
+        {
+          "id": "right-2",
+          "text": "Recovery to a known state"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "architecture-ai-rich-ordering",
+      "disciplineId": "architecture",
+      "pathId": "architecture-ai",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "architecture-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "architecture-ai-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Define inputs, constraints and acceptance checks"
+        },
+        {
+          "id": "step-1",
+          "text": "Run the automation on a controlled copy"
+        },
+        {
+          "id": "step-2",
+          "text": "Verify outputs against the acceptance checks"
+        },
+        {
+          "id": "step-3",
+          "text": "Approve and apply the reviewed changes"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "architecture-ai-rich-multi-hard",
+      "disciplineId": "architecture",
+      "pathId": "architecture-ai",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "An automation performs well overall but fails a critical category of tests. Which release controls are appropriate?",
+      "courseIds": [
+        "architecture-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "architecture-ai-rich-concept-multi-hard",
+      "options": [
+        "Evaluate the critical failures separately",
+        "Check applicable sources and constraints",
+        "Require a reviewable change list and recovery plan",
+        "Release solely because overall accuracy is high"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "structural-design-rich-visual",
+      "disciplineId": "structural",
+      "pathId": "structural-design",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "For the illustrated static beam, what is each vertical support reaction?",
+      "courseIds": [
+        "structural-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "structural-design-rich-concept-visual",
+      "options": [
+        "10 kN",
+        "20 kN",
+        "40 kN",
+        "5 kN"
+      ],
+      "correctIndex": 0,
+      "explanation": "The central 20 kN load is shared equally by the symmetric supports.",
+      "image": "assets/assessment-visuals/structural.svg",
+      "imageAlt": "Simply supported six-metre beam with a central 20 kN downward load."
+    },
+    {
+      "id": "structural-design-rich-multi-1",
+      "disciplineId": "structural",
+      "pathId": "structural-design",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs directly affect a structural analysis model?",
+      "courseIds": [
+        "structural-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "structural-design-rich-concept-multi-1",
+      "options": [
+        "Support restraints",
+        "Element connectivity",
+        "Load cases",
+        "The PDF cover colour"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "structural-design-rich-multi-2",
+      "disciplineId": "structural",
+      "pathId": "structural-design",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which checks help investigate unexpected analysis results?",
+      "courseIds": [
+        "structural-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "structural-design-rich-concept-multi-2",
+      "options": [
+        "Compare reactions with applied loads",
+        "Review releases and connectivity",
+        "Change the model icon",
+        "Ignore equilibrium"
+      ],
+      "correctIndices": [
+        0,
+        1
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "structural-design-rich-matching",
+      "disciplineId": "structural",
+      "pathId": "structural-design",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "structural-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "structural-design-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "ETABS",
+          "answerId": "right-0",
+          "image": "assets/app-etabs.svg"
+        },
+        {
+          "id": "left-1",
+          "text": "SAFE",
+          "answerId": "right-1",
+          "image": "assets/app-safe.svg"
+        },
+        {
+          "id": "left-2",
+          "text": "Load path",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Building structural analysis"
+        },
+        {
+          "id": "right-1",
+          "text": "Slab and foundation analysis"
+        },
+        {
+          "id": "right-2",
+          "text": "Transfer of actions toward supports"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "structural-design-rich-ordering",
+      "disciplineId": "structural",
+      "pathId": "structural-design",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "structural-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "structural-design-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Confirm the brief and design criteria"
+        },
+        {
+          "id": "step-1",
+          "text": "Calculate and select the systems"
+        },
+        {
+          "id": "step-2",
+          "text": "Coordinate the interfaces and resolve issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Issue the checked delivery package"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "structural-design-rich-multi-hard",
+      "disciplineId": "structural",
+      "pathId": "structural-design",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "A simply supported 6 m beam carries a uniform load of 4 kN/m. Ignore self-weight and use Mmax = wL squared / 8. Which results are correct?",
+      "courseIds": [
+        "structural-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "structural-design-rich-concept-multi-hard",
+      "options": [
+        "Total applied load = 24 kN",
+        "Each vertical reaction = 12 kN",
+        "Maximum bending moment = 18 kN m",
+        "Maximum bending moment = 36 kN m"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "structural-bim-rich-visual",
+      "disciplineId": "structural",
+      "pathId": "structural-bim",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marked zone shows a physical intersection between the duct and structural beam that needs coordination review?",
+      "courseIds": [
+        "structural-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "structural-bim-rich-concept-visual",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "correctIndex": 0,
+      "explanation": "A highlights the overlap between the duct route and structural beam.",
+      "image": "assets/assessment-visuals/bim.svg",
+      "imageAlt": "Duct crosses a structural beam at review zone A; B and C are clear duct sections."
+    },
+    {
+      "id": "structural-bim-rich-multi-1",
+      "disciplineId": "structural",
+      "pathId": "structural-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs support coordinated model federation?",
+      "courseIds": [
+        "structural-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "structural-bim-rich-concept-multi-1",
+      "options": [
+        "Agreed coordinate strategy",
+        "Current approved discipline models",
+        "Consistent units",
+        "Uncontrolled copies from unknown revisions"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "structural-bim-rich-multi-2",
+      "disciplineId": "structural",
+      "pathId": "structural-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which information may be required for an asset handover?",
+      "courseIds": [
+        "structural-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "structural-bim-rich-concept-multi-2",
+      "options": [
+        "Unique asset identifiers",
+        "Required parameters",
+        "Agreed classification information",
+        "A decorative file icon only"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "structural-bim-rich-matching",
+      "disciplineId": "structural",
+      "pathId": "structural-bim",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "structural-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "structural-bim-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Revit",
+          "answerId": "right-0",
+          "image": "assets/app-revit.svg"
+        },
+        {
+          "id": "left-1",
+          "text": "Navisworks",
+          "answerId": "right-1",
+          "image": "assets/app-navisworks.svg"
+        },
+        {
+          "id": "left-2",
+          "text": "ACC",
+          "answerId": "right-2",
+          "image": "assets/app-acc.svg"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Authoring discipline model information"
+        },
+        {
+          "id": "right-1",
+          "text": "Federated model and clash review"
+        },
+        {
+          "id": "right-2",
+          "text": "Document and issue collaboration"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "structural-bim-rich-ordering",
+      "disciplineId": "structural",
+      "pathId": "structural-bim",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "structural-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "structural-bim-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Agree the coordinates and information requirements"
+        },
+        {
+          "id": "step-1",
+          "text": "Federate the current discipline models"
+        },
+        {
+          "id": "step-2",
+          "text": "Resolve and verify the coordination issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Publish the accepted revision and update issue status"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "structural-bim-rich-multi-hard",
+      "disciplineId": "structural",
+      "pathId": "structural-bim",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "A delivery must satisfy geometry, coordinate and asset-information requirements. Which checks support acceptance?",
+      "courseIds": [
+        "structural-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "structural-bim-rich-concept-multi-hard",
+      "options": [
+        "Validate required geometry",
+        "Check required asset identifiers",
+        "Verify coordinate alignment",
+        "Accept because the filename says Final"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "structural-ai-rich-visual",
+      "disciplineId": "structural",
+      "pathId": "structural-ai",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which activity belongs at the missing gate before releasing this AI-assisted engineering output?",
+      "courseIds": [
+        "structural-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "structural-ai-rich-concept-visual",
+      "options": [
+        "Qualified verification of assumptions, sources and results",
+        "Automatic publication without checks",
+        "Deleting the source inputs",
+        "Changing the interface theme"
+      ],
+      "correctIndex": 0,
+      "explanation": "Engineering outputs need qualified checks before release.",
+      "image": "assets/assessment-visuals/ai.svg",
+      "imageAlt": "Inputs, AI draft, a missing release gate and release, connected in that order."
+    },
+    {
+      "id": "structural-ai-rich-multi-1",
+      "disciplineId": "structural",
+      "pathId": "structural-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which controls support responsible use of an AI-generated engineering output?",
+      "courseIds": [
+        "structural-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "structural-ai-rich-concept-multi-1",
+      "options": [
+        "Validate units and assumptions",
+        "Check authoritative sources",
+        "Test automation on a recoverable copy",
+        "Publish without review"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "structural-ai-rich-multi-2",
+      "disciplineId": "structural",
+      "pathId": "structural-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which prompt inputs reduce ambiguity in an engineering task?",
+      "courseIds": [
+        "structural-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "structural-ai-rich-concept-multi-2",
+      "options": [
+        "Explicit units",
+        "Boundary conditions and constraints",
+        "Expected validation checks",
+        "Unrelated interface colours"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "structural-ai-rich-matching",
+      "disciplineId": "structural",
+      "pathId": "structural-ai",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "structural-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "structural-ai-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Prompt context",
+          "answerId": "right-0"
+        },
+        {
+          "id": "left-1",
+          "text": "Validation",
+          "answerId": "right-1"
+        },
+        {
+          "id": "left-2",
+          "text": "Rollback",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Units, assumptions and constraints"
+        },
+        {
+          "id": "right-1",
+          "text": "Independent checks of the output"
+        },
+        {
+          "id": "right-2",
+          "text": "Recovery to a known state"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "structural-ai-rich-ordering",
+      "disciplineId": "structural",
+      "pathId": "structural-ai",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "structural-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "structural-ai-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Define inputs, constraints and acceptance checks"
+        },
+        {
+          "id": "step-1",
+          "text": "Run the automation on a controlled copy"
+        },
+        {
+          "id": "step-2",
+          "text": "Verify outputs against the acceptance checks"
+        },
+        {
+          "id": "step-3",
+          "text": "Approve and apply the reviewed changes"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "structural-ai-rich-multi-hard",
+      "disciplineId": "structural",
+      "pathId": "structural-ai",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "An automation performs well overall but fails a critical category of tests. Which release controls are appropriate?",
+      "courseIds": [
+        "structural-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "structural-ai-rich-concept-multi-hard",
+      "options": [
+        "Evaluate the critical failures separately",
+        "Check applicable sources and constraints",
+        "Require a reviewable change list and recovery plan",
+        "Release solely because overall accuracy is high"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "mechanical-design-rich-visual",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-design",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marked duct path supplies air from the AHU toward the occupied room?",
+      "courseIds": [
+        "mechanical-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "mechanical-design-rich-concept-visual",
+      "options": [
+        "A",
+        "B"
+      ],
+      "correctIndex": 0,
+      "explanation": "The arrows on A point from the AHU to the room; B is the return route.",
+      "image": "assets/assessment-visuals/mechanical.svg",
+      "imageAlt": "AHU on the left and room on the right: path A points toward the room and path B points back."
+    },
+    {
+      "id": "mechanical-design-rich-multi-1",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-design",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs influence a room cooling-load calculation?",
+      "courseIds": [
+        "mechanical-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "mechanical-design-rich-concept-multi-1",
+      "options": [
+        "Occupancy and schedules",
+        "Envelope properties",
+        "Ventilation conditions",
+        "Drawing ribbon colour"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "mechanical-design-rich-multi-2",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-design",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs affect the available water pressure at fixtures?",
+      "courseIds": [
+        "mechanical-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "mechanical-design-rich-concept-multi-2",
+      "options": [
+        "Elevation differences",
+        "Pipe friction losses",
+        "Design flow",
+        "Viewport border colour"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "mechanical-design-rich-matching",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-design",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "mechanical-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "mechanical-design-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "HAP",
+          "answerId": "right-0",
+          "image": "assets/app-hap.svg"
+        },
+        {
+          "id": "left-1",
+          "text": "Ductwork",
+          "answerId": "right-1"
+        },
+        {
+          "id": "left-2",
+          "text": "Pump",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "HVAC load and system calculations"
+        },
+        {
+          "id": "right-1",
+          "text": "Air distribution"
+        },
+        {
+          "id": "right-2",
+          "text": "Fluid circulation"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "mechanical-design-rich-ordering",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-design",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "mechanical-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "mechanical-design-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Confirm the brief and design criteria"
+        },
+        {
+          "id": "step-1",
+          "text": "Calculate and select the systems"
+        },
+        {
+          "id": "step-2",
+          "text": "Coordinate the interfaces and resolve issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Issue the checked delivery package"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "mechanical-design-rich-multi-hard",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-design",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "A duct route becomes longer and gains fittings. Which actions belong in the technical review?",
+      "courseIds": [
+        "mechanical-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "mechanical-design-rich-concept-multi-hard",
+      "options": [
+        "Recalculate system pressure losses",
+        "Recheck the fan operating requirement",
+        "Assume pressure loss is unchanged",
+        "Select solely by duct colour"
+      ],
+      "correctIndices": [
+        0,
+        1
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "mechanical-bim-rich-visual",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-bim",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marked zone shows a physical intersection between the duct and structural beam that needs coordination review?",
+      "courseIds": [
+        "mechanical-course-11"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "mechanical-bim-rich-concept-visual",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "correctIndex": 0,
+      "explanation": "A highlights the overlap between the duct route and structural beam.",
+      "image": "assets/assessment-visuals/bim.svg",
+      "imageAlt": "Duct crosses a structural beam at review zone A; B and C are clear duct sections."
+    },
+    {
+      "id": "mechanical-bim-rich-multi-1",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs support coordinated model federation?",
+      "courseIds": [
+        "mechanical-course-11"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "mechanical-bim-rich-concept-multi-1",
+      "options": [
+        "Agreed coordinate strategy",
+        "Current approved discipline models",
+        "Consistent units",
+        "Uncontrolled copies from unknown revisions"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "mechanical-bim-rich-multi-2",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which information may be required for an asset handover?",
+      "courseIds": [
+        "mechanical-course-11"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "mechanical-bim-rich-concept-multi-2",
+      "options": [
+        "Unique asset identifiers",
+        "Required parameters",
+        "Agreed classification information",
+        "A decorative file icon only"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "mechanical-bim-rich-matching",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-bim",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "mechanical-course-11"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "mechanical-bim-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Revit",
+          "answerId": "right-0",
+          "image": "assets/app-revit.svg"
+        },
+        {
+          "id": "left-1",
+          "text": "Navisworks",
+          "answerId": "right-1",
+          "image": "assets/app-navisworks.svg"
+        },
+        {
+          "id": "left-2",
+          "text": "ACC",
+          "answerId": "right-2",
+          "image": "assets/app-acc.svg"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Authoring discipline model information"
+        },
+        {
+          "id": "right-1",
+          "text": "Federated model and clash review"
+        },
+        {
+          "id": "right-2",
+          "text": "Document and issue collaboration"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "mechanical-bim-rich-ordering",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-bim",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "mechanical-course-11"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "mechanical-bim-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Agree the coordinates and information requirements"
+        },
+        {
+          "id": "step-1",
+          "text": "Federate the current discipline models"
+        },
+        {
+          "id": "step-2",
+          "text": "Resolve and verify the coordination issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Publish the accepted revision and update issue status"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "mechanical-bim-rich-multi-hard",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-bim",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "A delivery must satisfy geometry, coordinate and asset-information requirements. Which checks support acceptance?",
+      "courseIds": [
+        "mechanical-course-11"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "mechanical-bim-rich-concept-multi-hard",
+      "options": [
+        "Validate required geometry",
+        "Check required asset identifiers",
+        "Verify coordinate alignment",
+        "Accept because the filename says Final"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "mechanical-ai-rich-visual",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-ai",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which activity belongs at the missing gate before releasing this AI-assisted engineering output?",
+      "courseIds": [
+        "mechanical-course-19"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "mechanical-ai-rich-concept-visual",
+      "options": [
+        "Qualified verification of assumptions, sources and results",
+        "Automatic publication without checks",
+        "Deleting the source inputs",
+        "Changing the interface theme"
+      ],
+      "correctIndex": 0,
+      "explanation": "Engineering outputs need qualified checks before release.",
+      "image": "assets/assessment-visuals/ai.svg",
+      "imageAlt": "Inputs, AI draft, a missing release gate and release, connected in that order."
+    },
+    {
+      "id": "mechanical-ai-rich-multi-1",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which controls support responsible use of an AI-generated engineering output?",
+      "courseIds": [
+        "mechanical-course-19"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "mechanical-ai-rich-concept-multi-1",
+      "options": [
+        "Validate units and assumptions",
+        "Check authoritative sources",
+        "Test automation on a recoverable copy",
+        "Publish without review"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "mechanical-ai-rich-multi-2",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which prompt inputs reduce ambiguity in an engineering task?",
+      "courseIds": [
+        "mechanical-course-19"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "mechanical-ai-rich-concept-multi-2",
+      "options": [
+        "Explicit units",
+        "Boundary conditions and constraints",
+        "Expected validation checks",
+        "Unrelated interface colours"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "mechanical-ai-rich-matching",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-ai",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "mechanical-course-19"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "mechanical-ai-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Prompt context",
+          "answerId": "right-0"
+        },
+        {
+          "id": "left-1",
+          "text": "Validation",
+          "answerId": "right-1"
+        },
+        {
+          "id": "left-2",
+          "text": "Rollback",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Units, assumptions and constraints"
+        },
+        {
+          "id": "right-1",
+          "text": "Independent checks of the output"
+        },
+        {
+          "id": "right-2",
+          "text": "Recovery to a known state"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "mechanical-ai-rich-ordering",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-ai",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "mechanical-course-19"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "mechanical-ai-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Define inputs, constraints and acceptance checks"
+        },
+        {
+          "id": "step-1",
+          "text": "Run the automation on a controlled copy"
+        },
+        {
+          "id": "step-2",
+          "text": "Verify outputs against the acceptance checks"
+        },
+        {
+          "id": "step-3",
+          "text": "Approve and apply the reviewed changes"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "mechanical-ai-rich-multi-hard",
+      "disciplineId": "mechanical",
+      "pathId": "mechanical-ai",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "An automation performs well overall but fails a critical category of tests. Which release controls are appropriate?",
+      "courseIds": [
+        "mechanical-course-19"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "mechanical-ai-rich-concept-multi-hard",
+      "options": [
+        "Evaluate the critical failures separately",
+        "Check applicable sources and constraints",
+        "Require a reviewable change list and recovery plan",
+        "Release solely because overall accuracy is high"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "infrastructure-design-rich-visual",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-design",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marker identifies the pipe invert, the inside bottom of the pipe?",
+      "courseIds": [
+        "infrastructure-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "infrastructure-design-rich-concept-visual",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "correctIndex": 2,
+      "explanation": "C marks the inside bottom. A is the ground line and B is the external crown.",
+      "image": "assets/assessment-visuals/infrastructure.svg",
+      "imageAlt": "Pipe section: A marks ground, B marks the outside top and C marks the inside bottom."
+    },
+    {
+      "id": "infrastructure-design-rich-multi-1",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-design",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which properties should be checked before merging survey sources?",
+      "courseIds": [
+        "infrastructure-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "infrastructure-design-rich-concept-multi-1",
+      "options": [
+        "Horizontal coordinate reference",
+        "Vertical datum",
+        "Units and accuracy",
+        "The survey PDF colour"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "infrastructure-design-rich-multi-2",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-design",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which properties must stay coordinated in gravity drainage?",
+      "courseIds": [
+        "infrastructure-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "infrastructure-design-rich-concept-multi-2",
+      "options": [
+        "Invert elevations",
+        "Gradients",
+        "Outfall and connection constraints",
+        "Title-block font only"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "infrastructure-design-rich-matching",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-design",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "infrastructure-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "infrastructure-design-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Surface",
+          "answerId": "right-0"
+        },
+        {
+          "id": "left-1",
+          "text": "Alignment",
+          "answerId": "right-1"
+        },
+        {
+          "id": "left-2",
+          "text": "Profile",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Terrain geometry"
+        },
+        {
+          "id": "right-1",
+          "text": "Horizontal route geometry"
+        },
+        {
+          "id": "right-2",
+          "text": "Vertical route geometry"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "infrastructure-design-rich-ordering",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-design",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "infrastructure-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "infrastructure-design-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Confirm the brief and design criteria"
+        },
+        {
+          "id": "step-1",
+          "text": "Calculate and select the systems"
+        },
+        {
+          "id": "step-2",
+          "text": "Coordinate the interfaces and resolve issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Issue the checked delivery package"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "infrastructure-design-rich-multi-hard",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-design",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "A pipe has invert elevation 100.0 m, external crown elevation 100.6 m and ground elevation 102.0 m. Which statements are correct?",
+      "courseIds": [
+        "infrastructure-course-1"
+      ],
+      "topic": "Engineering design",
+      "conceptKey": "infrastructure-design-rich-concept-multi-hard",
+      "options": [
+        "Vertical cover over the external crown is 1.4 m",
+        "The external crown is at elevation 100.6 m",
+        "Vertical cover is 2.0 m",
+        "Vertical cover is 0.6 m"
+      ],
+      "correctIndices": [
+        0,
+        1
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "infrastructure-bim-rich-visual",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-bim",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which marked zone shows a physical intersection between the duct and structural beam that needs coordination review?",
+      "courseIds": [
+        "infrastructure-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "infrastructure-bim-rich-concept-visual",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "correctIndex": 0,
+      "explanation": "A highlights the overlap between the duct route and structural beam.",
+      "image": "assets/assessment-visuals/bim.svg",
+      "imageAlt": "Duct crosses a structural beam at review zone A; B and C are clear duct sections."
+    },
+    {
+      "id": "infrastructure-bim-rich-multi-1",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which inputs support coordinated model federation?",
+      "courseIds": [
+        "infrastructure-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "infrastructure-bim-rich-concept-multi-1",
+      "options": [
+        "Agreed coordinate strategy",
+        "Current approved discipline models",
+        "Consistent units",
+        "Uncontrolled copies from unknown revisions"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "infrastructure-bim-rich-multi-2",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-bim",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which information may be required for an asset handover?",
+      "courseIds": [
+        "infrastructure-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "infrastructure-bim-rich-concept-multi-2",
+      "options": [
+        "Unique asset identifiers",
+        "Required parameters",
+        "Agreed classification information",
+        "A decorative file icon only"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "infrastructure-bim-rich-matching",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-bim",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "infrastructure-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "infrastructure-bim-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Revit",
+          "answerId": "right-0",
+          "image": "assets/app-revit.svg"
+        },
+        {
+          "id": "left-1",
+          "text": "Navisworks",
+          "answerId": "right-1",
+          "image": "assets/app-navisworks.svg"
+        },
+        {
+          "id": "left-2",
+          "text": "ACC",
+          "answerId": "right-2",
+          "image": "assets/app-acc.svg"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Authoring discipline model information"
+        },
+        {
+          "id": "right-1",
+          "text": "Federated model and clash review"
+        },
+        {
+          "id": "right-2",
+          "text": "Document and issue collaboration"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "infrastructure-bim-rich-ordering",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-bim",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "infrastructure-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "infrastructure-bim-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Agree the coordinates and information requirements"
+        },
+        {
+          "id": "step-1",
+          "text": "Federate the current discipline models"
+        },
+        {
+          "id": "step-2",
+          "text": "Resolve and verify the coordination issues"
+        },
+        {
+          "id": "step-3",
+          "text": "Publish the accepted revision and update issue status"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "infrastructure-bim-rich-multi-hard",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-bim",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "A delivery must satisfy geometry, coordinate and asset-information requirements. Which checks support acceptance?",
+      "courseIds": [
+        "infrastructure-course-10"
+      ],
+      "topic": "BIM & coordination",
+      "conceptKey": "infrastructure-bim-rich-concept-multi-hard",
+      "options": [
+        "Validate required geometry",
+        "Check required asset identifiers",
+        "Verify coordinate alignment",
+        "Accept because the filename says Final"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
+    },
+    {
+      "id": "infrastructure-ai-rich-visual",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-ai",
+      "difficulty": "easy",
+      "type": "single",
+      "prompt": "Which activity belongs at the missing gate before releasing this AI-assisted engineering output?",
+      "courseIds": [
+        "infrastructure-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "infrastructure-ai-rich-concept-visual",
+      "options": [
+        "Qualified verification of assumptions, sources and results",
+        "Automatic publication without checks",
+        "Deleting the source inputs",
+        "Changing the interface theme"
+      ],
+      "correctIndex": 0,
+      "explanation": "Engineering outputs need qualified checks before release.",
+      "image": "assets/assessment-visuals/ai.svg",
+      "imageAlt": "Inputs, AI draft, a missing release gate and release, connected in that order."
+    },
+    {
+      "id": "infrastructure-ai-rich-multi-1",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which controls support responsible use of an AI-generated engineering output?",
+      "courseIds": [
+        "infrastructure-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "infrastructure-ai-rich-concept-multi-1",
+      "options": [
+        "Validate units and assumptions",
+        "Check authoritative sources",
+        "Test automation on a recoverable copy",
+        "Publish without review"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "infrastructure-ai-rich-multi-2",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-ai",
+      "difficulty": "easy",
+      "type": "multi",
+      "prompt": "Which prompt inputs reduce ambiguity in an engineering task?",
+      "courseIds": [
+        "infrastructure-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "infrastructure-ai-rich-concept-multi-2",
+      "options": [
+        "Explicit units",
+        "Boundary conditions and constraints",
+        "Expected validation checks",
+        "Unrelated interface colours"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Select every relevant technical input or control and exclude the unrelated choices."
+    },
+    {
+      "id": "infrastructure-ai-rich-matching",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-ai",
+      "difficulty": "medium",
+      "type": "matching",
+      "prompt": "Match each item in the left column to its role in the right column. Use each answer once.",
+      "courseIds": [
+        "infrastructure-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "infrastructure-ai-rich-concept-matching",
+      "items": [
+        {
+          "id": "left-0",
+          "text": "Prompt context",
+          "answerId": "right-0"
+        },
+        {
+          "id": "left-1",
+          "text": "Validation",
+          "answerId": "right-1"
+        },
+        {
+          "id": "left-2",
+          "text": "Rollback",
+          "answerId": "right-2"
+        }
+      ],
+      "matchOptions": [
+        {
+          "id": "right-0",
+          "text": "Units, assumptions and constraints"
+        },
+        {
+          "id": "right-1",
+          "text": "Independent checks of the output"
+        },
+        {
+          "id": "right-2",
+          "text": "Recovery to a known state"
+        }
+      ],
+      "explanation": "Each item has one corresponding role."
+    },
+    {
+      "id": "infrastructure-ai-rich-ordering",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-ai",
+      "difficulty": "hard",
+      "type": "ordering",
+      "prompt": "Arrange this simplified workflow from the first activity to the final release activity.",
+      "courseIds": [
+        "infrastructure-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "infrastructure-ai-rich-concept-ordering",
+      "items": [
+        {
+          "id": "step-0",
+          "text": "Define inputs, constraints and acceptance checks"
+        },
+        {
+          "id": "step-1",
+          "text": "Run the automation on a controlled copy"
+        },
+        {
+          "id": "step-2",
+          "text": "Verify outputs against the acceptance checks"
+        },
+        {
+          "id": "step-3",
+          "text": "Approve and apply the reviewed changes"
+        }
+      ],
+      "correctOrder": [
+        "step-0",
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
+      "explanation": "Define the requirements before execution, validate the work, then release the checked output."
+    },
+    {
+      "id": "infrastructure-ai-rich-multi-hard",
+      "disciplineId": "infrastructure",
+      "pathId": "infrastructure-ai",
+      "difficulty": "hard",
+      "type": "multi",
+      "prompt": "An automation performs well overall but fails a critical category of tests. Which release controls are appropriate?",
+      "courseIds": [
+        "infrastructure-course-18"
+      ],
+      "topic": "AI in engineering",
+      "conceptKey": "infrastructure-ai-rich-concept-multi-hard",
+      "options": [
+        "Evaluate the critical failures separately",
+        "Check applicable sources and constraints",
+        "Require a reviewable change list and recovery plan",
+        "Release solely because overall accuracy is high"
+      ],
+      "correctIndices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "All correct statements are required; unrelated or incorrect statements must be left unchecked."
     }
   ],
   "assessments": [
