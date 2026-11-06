@@ -8,15 +8,17 @@ Shift-click a brand logo or hold it for 1.5 seconds. Admin is hidden from the pu
 
 Manage courses, nested subcourses, learning paths, application knowledge, private questions and availability. Apply draft edits, then save to publish. Deleting a path also deletes its courses/questions from the draft; review the confirmation. Stale revisions and parent cycles are rejected. Unpublished parents hide descendants.
 
-## Assessments without email
+## Public browser assessments
 
-No participant email address, account, verification code, sending mailbox or SMTP configuration is required. Participants consent to private result storage, take randomized multiple-choice questions, then see scores by path and difficulty, focus topics, course recommendations and advice. Reports are stored privately in Admin and are not emailed. Existing historic reports are preserved. The old email endpoints and retry action are no longer exposed, and the email worker is not registered.
+All five disciplines are Available on GitHub Pages. The browser downloads `assets/assessment-bank.json` and uses `assets/assessment-browser.js` to draw and score questions. No backend, account, email, verification code or Turnstile is required for this mode. Answer keys are intentionally public, as authorized by the owner; this is an open learning self-assessment, not a secure or calibrated placement exam.
 
-Choose Hidden, Coming soon or Enabled per discipline. Every published path needs at least two reviewed questions at each difficulty before enabling. The local bank contains 240 draft questions (15 per path) requiring subject-expert review. The real bank/answer keys are excluded from public source and deployment. Authenticated admin supports private JSON import/export. Imports must be reviewed before activation.
+The public bank contains 240 questions across 16 paths, with five questions at each difficulty per path. Each attempt selects two different concepts at each difficulty per path: 24 questions for Electrical and 18 for other disciplines. Questions and options shuffle. Results compare every path and include focus topics, difficulty scores, course links and advice. The initial bank is in English; the interface supports Arabic/RTL.
 
-Each attempt selects two questions per difficulty per path: six per path, 24 for Electrical and 18 for other disciplines. Questions/options shuffle, answer keys remain private, and attempt snapshots prevent mid-exam edits changing scoring. Answers can be restored in the same browser tab. Results are learning guidance, not professional certification. The initial question bank is in English; the participant UI supports Arabic/RTL.
+Answers and results stay in the visitor's browser tab (`sessionStorage`) for up to 24 hours and can be restored after refresh. Closing the tab normally clears them, subject to browser session restoration. Start over/Try another assessment explicitly clears the saved attempt. No answers or results are submitted to HandesTECH, emailed or saved in Admin. Participants can print/save their result as PDF.
 
-Rate limiting and CSRF protection are active. Turnstile is optional; if configured, the start endpoint validates its token, exact hostname and assessment action. Configure `Turnstile__SiteKey`, `Turnstile__SecretKey`, `Turnstile__Hostname` only if you want it. Local test bypass applies only to Development loopback requests.
+Edit the public bank and its `assessments` availability entries locally, validate, then deploy to update GitHub Pages. Local Admin edits and private question imports do not automatically update this public snapshot. The retained server assessment API can still support hosted private grading/report storage later; its admin availability settings apply to that server API, not the public browser mode. Historic private reports remain untouched.
+
+Never publish the private `App_Data` folder, administrator settings, report files or backup archives. Only the intentionally public self-assessment bank belongs in `wwwroot` and `docs`.
 
 ## Chatbot
 
@@ -24,12 +26,12 @@ The visible Chat with HandesTECH button works on GitHub Pages and the local serv
 
 ## Online hosting
 
-GitHub Pages is a static preview: chatbot and course browsing work there; admin saving and assessments require an ASP.NET Core host. Use one application instance with HTTPS and a persistent private data directory (`Academy__DataDirectory`) outside `wwwroot`. A custom domain can wait. No mailbox is needed.
+GitHub Pages runs course browsing, the chatbot and public browser assessments. Private Admin saving and the retained private assessment API require an ASP.NET Core host. Use one application instance with HTTPS and a persistent private data directory (`Academy__DataDirectory`) outside `wwwroot`. A custom domain can wait. No mailbox is needed.
 
 For production, set `ASPNETCORE_ENVIRONMENT=Production`, administrator password hash and private persistent storage. Configure trusted proxy/HTTPS settings. Back up `academy.json` and Data Protection keys, establish a retention/deletion policy for results, and protect private bank exports. Windows keys use DPAPI; protect Linux keys at rest as appropriate. In-memory attempts expire after two hours and reset if the app restarts. Use a transactional database/distributed sessions before scaling to multiple instances.
 
-Azure Windows App Service F1 is an evaluation option, not a supported production plan. No cloud resources have been created. Publish with `dotnet publish HandesTECH.csproj -c Release -o .artifacts/publish`. Never deploy private data, backups or answer banks as public assets; import the private bank after authenticated setup.
+Azure Windows App Service F1 is an evaluation option, not a supported production plan. No cloud resources have been created. Publish with `dotnet publish HandesTECH.csproj -c Release -o .artifacts/publish`. Never deploy private data or backups as public assets. The dedicated public self-assessment bank is the intentional exception for answer keys; private admin banks are imported after authenticated setup.
 
 ## Validation
 
-Run `dotnet build HandesTECH.csproj` and `python scripts/test-academy.py`. Integration tests create disposable data, use synthetic questions if the private bank is absent, and confirm that no email is sent. Review technical questions and perform a real hosted end-to-end test before launch.
+Run `node scripts/test-browser-assessments.cjs`, `dotnet build HandesTECH.csproj` and `python scripts/test-academy.py`. Integration tests create disposable data, use synthetic questions if the private bank is absent, and confirm that no email is sent. Review technical questions and perform a real hosted end-to-end test before launch.

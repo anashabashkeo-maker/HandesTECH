@@ -3,15 +3,18 @@
 Purple bilingual engineering website with 112 course outlines across five disciplines and 16 learning paths. Open `VisualStudio/HandesTECH.sln` in Visual Studio and run the ASP.NET Core/.NET 10 application at http://localhost:5180.
 
 - `/admin.html`: first-run local administrator setup, courses/subcourses, paths, private question bank, assessment availability and reports.
-- `/assessment.html`: anonymous diagnostic, randomized questions, per-path results, focus areas and course recommendations.
-- GitHub Pages remains a static preview. It cannot run the private backend; assessments show Coming soon there.
+- `/assessment.html`: browser-only self-assessments, available on GitHub Pages across all five disciplines, with randomized questions, per-path results, focus areas and course recommendations.
+- GitHub Pages supports course browsing, the chatbot and browser assessments. Private Admin still needs the ASP.NET Core host.
 
-See [administration and deployment setup](docs/ADMIN-ASSESSMENT-SETUP.md). No administrator password, real question bank or answer keys are shipped in source. Email and verification codes are not required. Private local data lives in ignored `App_Data/`. The local draft bank has 240 questions requiring technical review before public enablement.
+See [administration and deployment setup](docs/ADMIN-ASSESSMENT-SETUP.md). The public self-assessment bank intentionally includes its answers, as approved for browser-only learning guidance. No administrator password, reports or private settings are published. Email and verification codes are not required. Private local data lives in ignored `App_Data/`.
+
+The public bank has 240 questions across 16 paths. Each attempt selects two distinct concepts per difficulty per path. Results stay in the visitor's browser tab and are not sent to Admin. Progress/results can be restored in that tab for up to 24 hours, cleared with Start over/Try another assessment, or printed as PDF. Questions are preliminary learning diagnostics, not a calibrated professional exam.
 
 ## Validate
 
 ```powershell
-dotnet build
+node scripts/test-browser-assessments.cjs
+dotnet build HandesTECH.csproj
 python scripts/test-academy.py
 ```
 

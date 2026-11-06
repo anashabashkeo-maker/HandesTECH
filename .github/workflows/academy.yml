@@ -1,7 +1,7 @@
 name: Academy checks
 on:
   push:
-    paths: ['Academy/**', 'Program.cs', 'HandesTECH.csproj', 'scripts/test-academy.py', 'wwwroot/**', '.github/workflows/academy.yml']
+    paths: ['Academy/**', 'Program.cs', 'HandesTECH.csproj', 'scripts/test-academy.py', 'scripts/test-browser-assessments.cjs', 'wwwroot/**', '.github/workflows/academy.yml']
   pull_request:
 jobs:
   verify:
@@ -15,6 +15,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: dotnet build HandesTECH.csproj
+      - run: node scripts/test-browser-assessments.cjs
       - run: python scripts/test-academy.py
         env:
           HANDESTECH_SYNTHETIC_BANK: '1'
